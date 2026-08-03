@@ -1,5 +1,0 @@
-design,factor_count,total_n,p_bc,profile,calibration_paths,min_ratio,max_ratio,max_abs_cross_D,max_abs_cross_G,frobenius_cross_G,max_factor_correlation
-D1,2,200,0.80,independent,100000,1.042,1.066,5.30e-04,2.28e-03,3.94e-03,0.000
-D2,5,400,0.80,independent,100000,0.980,1.045,6.14e-04,8.07e-04,3.18e-03,0.000
-D3,5,400,0.80,latent-correlated,100000,0.983,1.057,4.93e-04,9.25e-04,3.50e-03,0.207
-D4,2,200,0.95,independent,100000,1.070,1.204,1.75e-04,4.72e-03,8.44e-03,0.000

@@ -1,5 +1,0 @@
-factor_count,target_per_group,superiority_effect,noninferiority_effect,equivalence_effect
-2,100,0.43,0.23,0.0
-2,500,0.19,-0.01,0.28
-5,200,0.3,0.1,0.18
-5,1000,0.135,-0.065,0.33
