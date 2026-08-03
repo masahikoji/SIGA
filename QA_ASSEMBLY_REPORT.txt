@@ -1,0 +1,33 @@
+SIGA software snapshot assembly report
+Date: 2026-08-03
+
+Included authoritative production sources:
+- SIGA-S continuous and binary workflows
+- SIGA-R full-grid simulation, launcher, and aggregator
+- pair-path stress simulation, tables, and figure scripts
+- SWIFT DIRECT-inspired original simulation and final SIGA-R extension v2
+- standardized timing workflow
+
+Included machine-generated production aggregates:
+- SIGA-S continuous, binary small-n, and corrected binary large-n summaries
+- SIGA-R 112-row summary, compact summary, and audit
+- pair-path 40-row summary, 20 scenario definitions, and design diagnostics
+- SWIFT DIRECT 100,000-trial summary, audit, table, paragraph, and timing TeX
+- standardized timing and calibration timing CSVs
+
+Release correction:
+- corrected binary large-n aggregation name-indexing bug, with original source and diff retained
+
+Checks performed in the assembly environment:
+- SHA-256 provenance generation
+- duplicate-source hash checks
+- CSV dimensions and headline-value calculations
+- shell syntax checks
+- static delimiter/string checks for R source files
+
+Limitation:
+R/Rscript was not installed in the assembly environment. The release includes
+an author-side execution checklist. Production aggregate outputs demonstrate
+that the authoritative production workflows completed, but the newly
+assembled portable reference tree must still be smoke-tested in the author's
+R environment before tagging v1.0.0.

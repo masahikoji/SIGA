@@ -1,0 +1,8 @@
+"item","value"
+"completed outer trials",1e+05
+"maximum absolute SIGA-S p-value reproduction error",1.01307850997046e-15
+"maximum absolute difference between old and pair-calibration gamma entries",0.0102013949530905
+"pair-calibration replicates",1e+05
+"pair-calibration elapsed minutes",0.486966666666667
+"SIGA-R safeguard rate, unadjusted",0
+"SIGA-R safeguard rate, adjusted",0

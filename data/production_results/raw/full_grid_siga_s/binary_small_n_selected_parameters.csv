@@ -1,0 +1,3 @@
+"factor_count","target_per_group","superiority_power_rd","noninferiority_power_rd","equivalence_power_rd","equivalence_margin","equivalence_reference_unadjusted","equivalence_reference_adjusted","equivalence_selection_reason","equivalence_selected_at_grid_edge","pilot_outer_trials","pilot_rerandomizations","pilot_calibration_paths","pilot_seed"
+2,100,0.2,0.1,0,0.21,0.845,0.8495,"Both reference powers in 0.80--0.90; closest mean to target",FALSE,2000,999,50000,20260727
+5,200,0.14,0.05,0,0.15,0.8475,0.8485,"Both reference powers in 0.80--0.90; closest mean to target",FALSE,2000,999,50000,20260727

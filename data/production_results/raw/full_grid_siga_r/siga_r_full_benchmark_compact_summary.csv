@@ -1,0 +1,5 @@
+"Outcome","Analysis","Scenarios","MaxAbsDifferenceAllPP","MaxAbsDifferencePowerPP","MinMeanVarianceRatio","MaxMeanVarianceRatio","MaxSafeguardRate"
+"Continuous","Unadjusted",28,0.248,0.248,1,1.03764847753557,0
+"Continuous","Adjusted",28,0.213,0.213,1,1.03792521119671,0
+"Binary","Unadjusted",28,0.322,0.322,1,1.04153335374822,0
+"Binary","Adjusted",28,0.21,0.21,1,1.04157041225235,0

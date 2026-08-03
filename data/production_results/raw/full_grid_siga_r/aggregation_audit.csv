@@ -1,0 +1,9 @@
+"item","value"
+"scenarios",56
+"analysis_rows",112
+"expected_outer_per_scenario",1e+05
+"minimum_completed_outer",1e+05
+"maximum_completed_outer",1e+05
+"maximum_absolute_siga_r_minus_rt_pp",0.322
+"maximum_power_absolute_siga_r_minus_rt_pp",0.322
+"maximum_safeguard_rate",0

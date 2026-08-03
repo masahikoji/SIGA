@@ -1,0 +1,15 @@
+--- simulation_binary_large_n_original.R
++++ simulation_binary_large_n.R
+@@ -1446,7 +1446,11 @@
+       return(c(probability = NA_real_, lower = NA_real_, upper = NA_real_))
+     }
+     ci <- wilson_interval(sum(x), length(x))
+-    c(probability = ci["estimate"], lower = ci["lower"], upper = ci["upper"])
++    c(
++      probability = unname(ci["estimate"]),
++      lower = unname(ci["lower"]),
++      upper = unname(ci["upper"])
++    )
+   }
+ 
+   pu <- rejection_summary("reject_proposed_unadjusted")

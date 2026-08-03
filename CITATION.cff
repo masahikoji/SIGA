@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "Please cite this software and the accompanying manuscript."
+title: "SIGA: sampling and randomization calibration under biased-coin minimization"
+version: "1.0.0"
+date-released: "2026-08-03"
+authors:
+  - family-names: "Kojima"
+    given-names: "Masahiro"
+repository-code: "https://github.com/masahikoji/SIGA"
+type: software
+preferred-citation:
+  type: article
+  title: "Fast Power Evaluation under Biased-Coin Minimization: Sampling and Randomization Calibration"
+  authors:
+    - family-names: "Kojima"
+      given-names: "Masahiro"
+  year: 2026

@@ -1,0 +1,13 @@
+#!/usr/bin/env Rscript
+args <- commandArgs(trailingOnly = FALSE)
+file_arg <- grep("^--file=", args, value = TRUE)
+script <- normalizePath(sub("^--file=", "", file_arg[1L]), winslash = "/")
+root <- normalizePath(file.path(dirname(script), ".."), winslash = "/")
+source(file.path(root, "R", "production_result_tools.R"))
+out <- path.expand(Sys.getenv("SIGA_STANDARDIZED_OUTPUT_DIR", unset = file.path(root, "data", "standardized_results")))
+dir.create(out, recursive = TRUE, showWarnings = FALSE)
+write.csv(siga_build_full_grid_s(root), file.path(out, "full_grid_siga_s_standardized.csv"), row.names = FALSE, na = "")
+write.csv(siga_build_full_grid_r(root), file.path(out, "full_grid_siga_r_standardized.csv"), row.names = FALSE, na = "")
+write.csv(siga_build_pair_stress(root), file.path(out, "pair_path_stress_standardized.csv"), row.names = FALSE, na = "")
+write.csv(siga_build_swift(root), file.path(out, "swift_direct_standardized.csv"), row.names = FALSE, na = "")
+message("Standardized results written to: ", normalizePath(out, winslash = "/", mustWork = TRUE))
