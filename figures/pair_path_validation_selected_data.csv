@@ -1,7 +1,0 @@
-scenario_id,label,siga_s_percent,siga_r_percent,rt_percent
-1,aligned continuous,2.56,2.56,2.58
-3,realistic continuous,2.46,2.45,2.49
-6,common-log-odds binary,2.44,2.44,2.38
-16,correlated continuous stress,3.16,2.41,2.85
-19,strong continuous stress,2.46,1.57,1.64
-20,strong binary stress,2.25,1.98,1.79
