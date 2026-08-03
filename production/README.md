@@ -1,9 +1,9 @@
-# Authoritative production workflows
+# Production workflows
 
-The files in this directory are the source snapshots that generated the
-machine-readable aggregate results under `../data/production_results/raw/`.
-They are preserved separately from the consolidated portable implementation
-under `../reference_implementation/`.
+The files in this directory are the source snapshots used to generate the
+aggregate results under `../data/production_results/raw/`. They are kept
+separate from the portable implementation under
+`../reference_implementation/`.
 
 ## Manuscript-scale settings
 
@@ -22,7 +22,7 @@ workflows; there is therefore no single SIGA-S base seed. The randomization-
 targeted full grid was an independent rerun, so its RT percentages need not be
 identical to those in the sampling-targeted full grid.
 
-## Exact reported-result verification
+## Reported-result verification
 
 From the repository root:
 
@@ -30,8 +30,8 @@ From the repository root:
 Rscript scripts/06_verify_production_results.R
 ```
 
-This reads the included production aggregate CSVs rather than values
-transcribed from LaTeX tables.
+This command reads the included production aggregate CSVs and verifies the
+reported numerical summaries.
 
 ## Smoke and kernel checks
 
@@ -80,14 +80,13 @@ PWRT_PROJECT_DIR=/absolute/path/to/project SWIFT_OLD_SCENARIO_DIR=/absolute/path
 
 ### Binary large-n aggregation correction
 
-The supplied large-n binary production script contained a base-R name
-propagation bug in its aggregation helper: `c(probability = ci["estimate"])`
-created the name `probability.estimate`, so later indexing by `"probability"`
-returned `NA`. The active release script
-`full_grid_siga_s/simulation_binary_large_n.R` applies the minimal `unname()`
-correction. The original supplied source and a unified diff are preserved in
-that directory. The included corrected 100,000-replicate aggregate CSV is the
-result used by the manuscript.
+The archived large-n binary script contains a base-R name-propagation issue in
+its aggregation helper: `c(probability = ci["estimate"])` creates the name
+`probability.estimate`, so later indexing by `"probability"` returns `NA`.
+The active script `full_grid_siga_s/simulation_binary_large_n.R` applies the
+minimal `unname()` correction. The archived original source and a unified diff
+are retained in the same directory. The corrected 100,000-replicate aggregate
+CSV is the result used in the reported comparison.
 
 ### SIGA-S workflows and timing
 

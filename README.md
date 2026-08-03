@@ -5,28 +5,24 @@ This repository accompanies:
 > Kojima, M. *Fast Power Evaluation under Biased-Coin Minimization: Sampling and Randomization Calibration*.
 
 It implements the historical equal-weight absolute-range Pocock-Simon
-allocation rule used in the manuscript. It does not substitute a quadratic-
+allocation rule used in the study. It does not substitute a quadratic-
 potential allocation criterion.
 
-## What is authoritative
+## Repository structure
 
 - `production/` contains the source snapshots used for the reported numerical
   studies.
-- `data/production_results/raw/` contains their machine-generated aggregate
-  outputs.
-- `scripts/06_verify_production_results.R` recomputes every headline number
-  from those aggregate outputs.
-- `reference_implementation/` is a consolidated base-R implementation for
-  inspection, smoke tests, and small independent reruns. It is not presented
-  as the byte-identical workflow that generated every reported table.
+- `data/production_results/raw/` contains the corresponding aggregate outputs.
+- `scripts/06_verify_production_results.R` recomputes the headline numerical
+  summaries from those aggregate outputs.
+- `reference_implementation/` contains a consolidated base-R implementation
+  for inspection, smoke tests, and small independent reruns.
 
-This separation corrects an earlier release-candidate structure in which
-reported-result CSVs were transcribed from LaTeX and the portable workflow
-used different seeds from the production runs.
-
-The active binary large-n production script includes a documented minimal
-aggregation fix for a base-R name-propagation bug; the original source and
-unified diff are retained beside it.
+The production workflows and portable reference implementation are kept
+separate so that the provenance of the reported results is explicit. The
+binary large-n production workflow includes a documented aggregation
+correction for a base-R name-propagation issue; the archived original source
+and a unified diff are retained with the active script.
 
 ## Included studies
 
@@ -67,7 +63,8 @@ The R verifier checks directly that:
   0.205, and 0.322 percentage points;
 - the pair-path stress maxima are 0.825 and 0.685 percentage points for SIGA-S
   and SIGA-R;
-- the SWIFT DIRECT-inspired powers and 100,000-trial audit match the manuscript;
+- the SWIFT DIRECT-inspired powers and 100,000-trial audit match the reported
+  results;
 - the included standardized CSVs are reproducible from the raw production
   aggregates.
 
@@ -105,7 +102,7 @@ merge only after completion.
 ## Theoretical scope
 
 The numerical implementation exactly follows the absolute-range rule. The
-manuscript retains the required one-copy and three-copy allocation limits as
+analysis retains the required one-copy and three-copy allocation limits as
 explicit assumptions; simulation is not claimed to prove the unresolved
 global stability and additive-functional CLT steps.
 
