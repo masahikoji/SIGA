@@ -13,7 +13,7 @@ separate from the portable implementation under
 | SIGA-S binary, large n | 100,000 | 4,999 | 100,000 one-path | 20260726 |
 | SIGA-S binary, small n | 100,000 | 4,999 | 100,000 one-path | 20260728 |
 | SIGA-R full grid | 100,000 | 4,999 | 100,000 three-path | 20260801 |
-| Pair-path stress study | 100,000 | 4,999 | 100,000 three-path | 20260729 |
+| Targeted pair-path supplemental sensitivity analysis | 100,000 | 4,999 | 100,000 three-path plus 200,000 independent direction-selection | 20260805 |
 | SWIFT DIRECT-inspired SIGA-S/RT and SIGA-R extension | 100,000 | 4,999 | 100,000 one-path plus 100,000 three-path | 20260724 |
 | Standardized timing benchmark | as recorded in output CSV | 4,999 | 100,000 | 20260729 |
 
@@ -54,17 +54,13 @@ cd production/full_grid_siga_r
 PWRT_OUTPUT_DIR=/absolute/path/to/output PWRT_N_OUTER=100000 PWRT_N_RERAND=4999 PWRT_N_CALIBRATION=100000 PWRT_SEED=20260801 PWRT_WORKERS=24 bash run_siga_r_full_benchmark_m3_ultra.sh
 ```
 
-### Pair-path stress study
+### Targeted pair-path supplemental sensitivity analysis
 
-Run each shard independently, then aggregate using the same `PWRT_OUTPUT_DIR`,
-`PWRT_N_SHARDS`, profile, scenario set, and seed:
-
-```bash
-cd production/pair_path_stress
-PWRT_PROFILE=manuscript PWRT_SCENARIO_SET=all PWRT_MODE=run PWRT_PROJECT_DIR=/absolute/path/to/pair_project PWRT_OUTPUT_DIR=/absolute/path/to/pair_output PWRT_N_SHARDS=40 PWRT_SHARD_ID=1 PWRT_SEED=20260729 Rscript simulation_pair_path_stress.R
-
-PWRT_PROFILE=manuscript PWRT_SCENARIO_SET=all PWRT_MODE=aggregate PWRT_PROJECT_DIR=/absolute/path/to/pair_project PWRT_OUTPUT_DIR=/absolute/path/to/pair_output PWRT_N_SHARDS=40 PWRT_SEED=20260729 Rscript simulation_pair_path_stress.R
-```
+The exact 12-scenario workflow and commands are documented in
+`production/pair_path_supplemental/README.md`. The released run used 120
+shards, base seed 20260805, 100,000 outer trials per scenario, 4,999 RT paths,
+100,000 analysis-calibration replicates and 200,000 independent direction-
+selection replicates for the two strong-design configurations.
 
 ### SWIFT DIRECT-inspired extension
 

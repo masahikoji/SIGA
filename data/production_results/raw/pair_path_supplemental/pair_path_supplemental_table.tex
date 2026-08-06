@@ -1,0 +1,50 @@
+\begingroup
+\fontsize{8.5pt}{10.0pt}\selectfont
+\setlength{\tabcolsep}{2.0pt}
+\renewcommand{\arraystretch}{1.06}
+\setlength{\LTleft}{\fill}
+\setlength{\LTright}{\fill}
+\begin{longtable}{@{}>{\centering\arraybackslash}m{28pt}>{\centering\arraybackslash}m{18pt}>{\centering\arraybackslash}m{34pt}>{\raggedright\arraybackslash}m{48pt}>{\raggedright\arraybackslash}m{66pt}>{\raggedright\arraybackslash}m{52pt}>{\centering\arraybackslash}m{40pt}*{3}{>{\centering\arraybackslash}m{31pt}}@{}}
+\caption{Rejection probabilities in the targeted pair-path sensitivity analysis.}
+\label{tab:supp-pair-path-sensitivity-results}\\
+\toprule
+Code & $F$ & \shortstack{$n$/\\group} & Outcome & Model & Analysis & \shortstack{Mean\\$\widehat\rho_n$} & SIGA-S & SIGA-R & RT \\
+\midrule
+\endfirsthead
+\multicolumn{10}{c}{\tablename\ \thetable{} -- continued}\\
+\toprule
+Code & $F$ & \shortstack{$n$/\\group} & Outcome & Model & Analysis & \shortstack{Mean\\$\widehat\rho_n$} & SIGA-S & SIGA-R & RT \\
+\midrule
+\endhead
+\midrule
+\multicolumn{10}{r}{Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+S01 & 2 & 100 & Continuous & realistic & Unadjusted & 1.003 & 2.44 & 2.42 & 2.46 \\
+S01 & 2 & 100 & Continuous & realistic & Adjusted & 1.004 & 2.44 & 2.42 & 2.46 \\
+S02 & 2 & 100 & Binary & common-log-odds & Unadjusted & 1.000 & 2.46 & 2.46 & 2.33 \\
+S02 & 2 & 100 & Binary & common-log-odds & Adjusted & 1.000 & 2.39 & 2.39 & 2.33 \\
+S03 & 2 & 500 & Continuous & realistic & Unadjusted & 1.003 & 2.48 & 2.46 & 2.48 \\
+S03 & 2 & 500 & Continuous & realistic & Adjusted & 1.003 & 2.49 & 2.47 & 2.48 \\
+S04 & 2 & 500 & Binary & common-log-odds & Unadjusted & 1.000 & 2.48 & 2.48 & 2.41 \\
+S04 & 2 & 500 & Binary & common-log-odds & Adjusted & 1.000 & 2.46 & 2.46 & 2.42 \\
+S05 & 5 & 200 & Continuous & realistic & Unadjusted & 1.002 & 2.38 & 2.37 & 2.42 \\
+S05 & 5 & 200 & Continuous & realistic & Adjusted & 1.002 & 2.44 & 2.42 & 2.43 \\
+S06 & 5 & 200 & Binary & common-log-odds & Unadjusted & 1.000 & 2.36 & 2.36 & 2.37 \\
+S06 & 5 & 200 & Binary & common-log-odds & Adjusted & 1.000 & 2.38 & 2.38 & 2.39 \\
+S07 & 5 & 1000 & Continuous & realistic & Unadjusted & 1.002 & 2.47 & 2.46 & 2.47 \\
+S07 & 5 & 1000 & Continuous & realistic & Adjusted & 1.002 & 2.49 & 2.48 & 2.47 \\
+S08 & 5 & 1000 & Binary & common-log-odds & Unadjusted & 1.000 & 2.35 & 2.35 & 2.38 \\
+S08 & 5 & 1000 & Binary & common-log-odds & Adjusted & 1.000 & 2.38 & 2.38 & 2.39 \\
+S09 & 2 & 100 & Continuous & pure-symmetric & Unadjusted & 1.193 & 2.43 & 1.60 & 1.63 \\
+S09 & 2 & 100 & Continuous & pure-symmetric & Adjusted & 1.193 & 2.43 & 1.60 & 1.64 \\
+S10 & 2 & 100 & Binary & symmetric-stress & Unadjusted & 1.115 & 2.19 & 2.02 & 1.77 \\
+S10 & 2 & 100 & Binary & symmetric-stress & Adjusted & 1.115 & 2.23 & 2.02 & 1.80 \\
+S11 & 2 & 500 & Continuous & pure-symmetric & Unadjusted & 1.194 & 2.52 & 1.65 & 1.62 \\
+S11 & 2 & 500 & Continuous & pure-symmetric & Adjusted & 1.194 & 2.52 & 1.65 & 1.62 \\
+S12 & 2 & 500 & Binary & symmetric-stress & Unadjusted & 1.113 & 2.39 & 2.01 & 1.91 \\
+S12 & 2 & 500 & Binary & symmetric-stress & Adjusted & 1.113 & 2.40 & 2.01 & 1.91 \\
+\end{longtable}
+\noindent{\footnotesize Rejection probabilities are percentages at a nominal one-sided level of 2.5\%. Codes S01--S08 denote practically heterogeneous scenarios under $p_{\rm bc}=0.80$, whereas S09--S12 denote deliberately strong pair-path scenarios under $p_{\rm bc}=0.95$.}
+\endgroup

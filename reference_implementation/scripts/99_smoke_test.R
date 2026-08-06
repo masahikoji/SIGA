@@ -39,6 +39,6 @@ rt <- fixed_score_randomization_test(
 stopifnot(all(rt$greater >= 0 & rt$greater <= 1))
 stopifnot(all(rt$two_sided >= 0 & rt$two_sided <= 1))
 stopifnot(nrow(make_full_grid_scenarios()) == 56L)
-stopifnot(nrow(make_stress_scenarios()) == 20L)
+stopifnot(nrow(make_pair_path_supplemental_scenarios()) == 12L)
 
 cat("SIGA smoke test passed.\n")

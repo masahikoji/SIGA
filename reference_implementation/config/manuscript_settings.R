@@ -22,10 +22,11 @@ SIGA_MANUSCRIPT <- list(
     B_calibration = 100000L, base_seed = 20260801L,
     calibration_type = "three_path", epsilon = "1/n"
   ),
-  pair_path_stress = list(
+  pair_path_supplemental = list(
     n_outer = 100000L, B_randomization = 4999L,
-    B_calibration = 100000L, base_seed = 20260729L,
-    epsilon = "1/n"
+    B_calibration = 100000L, B_direction = 200000L,
+    n_shards = 120L, base_seed = 20260805L,
+    run_version = "v20260805_supplemental_v2", epsilon = "1/n"
   ),
   swift_direct_inspired = list(
     n_outer = 100000L, B_randomization = 4999L,

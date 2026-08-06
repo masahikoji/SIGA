@@ -69,11 +69,33 @@ siga_build_full_grid_r <- function(root) {
   x
 }
 
-siga_build_pair_stress <- function(root) {
-  x <- read.csv(file.path(siga_raw_dir(root), "pair_path_stress", "pair_path_stress_summary.csv"), check.names = FALSE)
+siga_build_pair_path_supplemental <- function(root) {
+  x <- read.csv(
+    file.path(
+      siga_raw_dir(root), "pair_path_supplemental",
+      "pair_path_supplemental_summary.csv"
+    ),
+    check.names = FALSE
+  )
+  keep <- c(
+    "scenario_id", "scenario_code", "scenario_label", "scenario_class",
+    "set", "design_id", "design_label", "factor_count", "target_per_group",
+    "total_n", "pbc", "profile_type", "outcome_type", "model_type",
+    "direction", "boundary", "alpha", "n_outer",
+    "rerandomizations_per_trial", "allocation_calibration_paths",
+    "direction_calibration_paths", "base_seed", "run_version", "analysis",
+    "mean_variance_ratio_r_over_s", "siga_s", "siga_s_lower_95",
+    "siga_s_upper_95", "siga_r", "siga_r_lower_95", "siga_r_upper_95",
+    "rt", "rt_lower_95", "rt_upper_95", "difference_siga_s_minus_rt",
+    "difference_siga_s_minus_rt_se", "difference_siga_r_minus_rt",
+    "difference_siga_r_minus_rt_se", "safeguard_rate", "gap_explanation"
+  )
+  missing <- setdiff(keep, names(x))
+  if (length(missing)) stop("Pair-path summary is missing: ", paste(missing, collapse = ", "), call. = FALSE)
+  x <- x[, keep, drop = FALSE]
   x$difference_siga_s_minus_rt_pp <- 100 * x$difference_siga_s_minus_rt
   x$difference_siga_r_minus_rt_pp <- 100 * x$difference_siga_r_minus_rt
-  x
+  x[order(x$scenario_id, match(x$analysis, c("unadjusted", "adjusted"))), , drop = FALSE]
 }
 
 siga_build_swift <- function(root) {

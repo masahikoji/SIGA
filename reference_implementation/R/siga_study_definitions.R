@@ -268,16 +268,17 @@ scale_direction_for_binary_delta <- function(direction,
   d
 }
 
-make_stress_designs <- function() {
+make_pair_path_supplemental_designs <- function() {
   master <- c(0.50, 0.40, 0.30, 0.20, 0.10)
   specification <- data.frame(
-    design_id = 1:4,
-    label = c("D1", "D2", "D3", "D4"),
-    K = c(2L, 5L, 5L, 2L),
-    total_n = c(200L, 400L, 400L, 200L),
-    pbc = c(0.80, 0.80, 0.80, 0.95),
-    profile_type = c("independent", "independent", "latent_correlated", "independent"),
-    latent_strength = c(0, 0, 1, 0),
+    design_id = 1:6,
+    label = paste0("D", 1:6),
+    K = c(2L, 2L, 5L, 5L, 2L, 2L),
+    target_per_group = c(100L, 500L, 200L, 1000L, 100L, 500L),
+    total_n = c(200L, 1000L, 400L, 2000L, 200L, 1000L),
+    pbc = c(0.80, 0.80, 0.80, 0.80, 0.95, 0.95),
+    profile_type = "independent",
+    latent_strength = 0,
     stringsAsFactors = FALSE
   )
   out <- vector("list", nrow(specification))
@@ -285,27 +286,14 @@ make_stress_designs <- function() {
     row <- specification[i, ]
     patterns <- all_binary_patterns(row$K)
     factor_prob <- master[seq_len(row$K)]
-    profile_prob <- if (row$profile_type == "independent") {
-      profile_prob_independent(factor_prob, patterns)
-    } else {
-      profile_prob_latent_correlated(
-        factor_prob, latent_strength = row$latent_strength,
-        mixing_prob = 0.5, patterns = patterns
-      )
-    }
+    profile_prob <- profile_prob_independent(factor_prob, patterns)
     out[[i]] <- list(
-      design_id = row$design_id,
-      label = row$label,
-      K = row$K,
-      J = nrow(patterns),
-      total_n = row$total_n,
-      pbc = row$pbc,
-      weights = rep(1, row$K + 1L),
-      profile_type = row$profile_type,
-      latent_strength = row$latent_strength,
-      patterns = patterns,
-      factor_prob = factor_prob,
-      profile_prob = profile_prob,
+      design_id = row$design_id, label = row$label, K = row$K,
+      J = nrow(patterns), target_per_group = row$target_per_group,
+      total_n = row$total_n, pbc = row$pbc,
+      weights = rep(1, row$K + 1L), profile_type = row$profile_type,
+      latent_strength = row$latent_strength, patterns = patterns,
+      factor_prob = factor_prob, profile_prob = profile_prob,
       correlation = profile_correlations(patterns, profile_prob)
     )
   }
@@ -313,53 +301,44 @@ make_stress_designs <- function() {
   out
 }
 
-make_stress_scenarios <- function() {
-  rows <- list(
-    c(1, "core", "D1", "continuous", "homogeneous", "zero"),
-    c(2, "core", "D1", "continuous", "pure_symmetric", "max_ratio"),
-    c(3, "core", "D1", "continuous", "realistic", "max_ratio"),
-    c(4, "core", "D1", "binary", "homogeneous", "zero"),
-    c(5, "core", "D1", "binary", "symmetric_stress", "max_ratio"),
-    c(6, "core", "D1", "binary", "common_log_odds", "common_log_odds"),
-    c(7, "core", "D2", "continuous", "homogeneous", "zero"),
-    c(8, "core", "D2", "continuous", "pure_symmetric", "min_ratio"),
-    c(9, "core", "D2", "continuous", "pure_symmetric", "max_ratio"),
-    c(10, "core", "D2", "continuous", "realistic", "max_ratio"),
-    c(11, "core", "D2", "binary", "homogeneous", "zero"),
-    c(12, "core", "D2", "binary", "symmetric_stress", "min_ratio"),
-    c(13, "core", "D2", "binary", "symmetric_stress", "max_ratio"),
-    c(14, "core", "D2", "binary", "common_log_odds", "common_log_odds"),
-    c(15, "sensitivity", "D3", "continuous", "pure_symmetric", "min_ratio"),
-    c(16, "sensitivity", "D3", "continuous", "pure_symmetric", "max_ratio"),
-    c(17, "sensitivity", "D3", "binary", "symmetric_stress", "min_ratio"),
-    c(18, "sensitivity", "D3", "binary", "symmetric_stress", "max_ratio"),
-    c(19, "sensitivity", "D4", "continuous", "pure_symmetric", "max_ratio"),
-    c(20, "sensitivity", "D4", "binary", "symmetric_stress", "max_ratio")
+make_pair_path_supplemental_scenarios <- function() {
+  out <- data.frame(
+    scenario_id = 1:12,
+    scenario_code = sprintf("S%02d", 1:12),
+    set = "supplemental",
+    design = rep(paste0("D", 1:6), each = 2L),
+    outcome = rep(c("continuous", "binary"), 6L),
+    model = c(
+      "realistic", "common_log_odds", "realistic", "common_log_odds",
+      "realistic", "common_log_odds", "realistic", "common_log_odds",
+      "pure_symmetric", "symmetric_stress", "pure_symmetric", "symmetric_stress"
+    ),
+    direction = c(
+      rep(c("first_factor_contrast", "common_log_odds"), 4L),
+      rep("robust_max_ratio", 4L)
+    ),
+    scenario_class = c(rep("practical_heterogeneity", 8L), rep("strong_pair_path", 4L)),
+    stringsAsFactors = FALSE
   )
-  out <- as.data.frame(do.call(rbind, rows), stringsAsFactors = FALSE)
-  names(out) <- c("scenario_id", "set", "design", "outcome", "model", "direction")
-  out$scenario_id <- as.integer(out$scenario_id)
   out$boundary <- ifelse(out$outcome == "continuous", -0.20, -0.10)
   out$alpha <- 0.025
   out
 }
 
-make_stress_model <- function(scenario, design, calibration) {
-  direction_set <- generalized_pair_directions(calibration$psi, design$profile_prob)
+make_pair_path_supplemental_model <- function(scenario, design, calibration, direction_calibration = NULL) {
+  first_factor <- weighted_center(design$patterns[, 1L], design$profile_prob)
+  first_factor <- scale_direction(first_factor, 1)
   direction <- switch(
     scenario$direction,
-    min_ratio = direction_set$min_direction,
-    max_ratio = direction_set$max_direction,
-    zero = rep(0, design$J),
+    first_factor_contrast = first_factor,
+    robust_max_ratio = {
+      if (is.null(direction_calibration)) stop("An independent direction calibration is required.", call. = FALSE)
+      generalized_pair_directions(direction_calibration$psi, design$profile_prob)$max_direction
+    },
     common_log_odds = rep(0, design$J),
-    stop("Unknown stress direction.", call. = FALSE)
+    stop("Unknown supplemental direction.", call. = FALSE)
   )
   boundary <- as.numeric(scenario$boundary)
-  if (scenario$outcome == "continuous" && scenario$model == "homogeneous") {
-    return(list(type = "continuous_symmetric", boundary = boundary,
-                delta = rep(boundary, design$J), d = rep(0, design$J),
-                shared_noise_sd = 1))
-  }
   if (scenario$outcome == "continuous" && scenario$model == "pure_symmetric") {
     d <- weighted_center(scale_direction(direction, 1.00), design$profile_prob)
     return(list(type = "continuous_symmetric", boundary = boundary,
@@ -375,12 +354,6 @@ make_stress_model <- function(scenario, design, calibration) {
     return(list(type = "continuous_realistic", boundary = boundary,
                 delta = boundary + d, d = d, mu0 = mu0,
                 outcome_sd = 1, individual_effect_sd = 0.25))
-  }
-  if (scenario$outcome == "binary" && scenario$model == "homogeneous") {
-    p0 <- rep(0.60, design$J)
-    p1 <- p0 + boundary
-    return(list(type = "binary_direct_probability", boundary = boundary,
-                p0 = p0, p1 = p1, d = rep(0, design$J)))
   }
   if (scenario$outcome == "binary" && scenario$model == "symmetric_stress") {
     d <- scale_direction_for_binary_delta(direction, boundary, 0.80, 0.90, 0.98)
@@ -404,10 +377,10 @@ make_stress_model <- function(scenario, design, calibration) {
                 p0 = fitted$p0, p1 = fitted$p1,
                 d = fitted$p1 - fitted$p0 - boundary))
   }
-  stop("Unknown stress model.", call. = FALSE)
+  stop("Unknown supplemental model.", call. = FALSE)
 }
 
-generate_stress_trial <- function(design, model, seed_profile, seed_allocation, seed_outcome) {
+generate_pair_path_supplemental_trial <- function(design, model, seed_profile, seed_allocation, seed_outcome) {
   set.seed(normalise_seed(seed_profile))
   profile <- generate_profile_sequence(design$total_n, design$patterns, design$profile_prob)
   z <- absolute_minimization_assign(

@@ -17,3 +17,8 @@ Rscript reference_implementation/scripts/99_smoke_test.R
 
 The manuscript-scale production workflows should be run using the scripts and
 environment variables documented in `../production/README.md`.
+
+
+## Targeted pair-path supplemental analysis
+
+The exact released 12-scenario workflow is authoritative under `production/pair_path_supplemental/`. The reference runner `scripts/03_run_pair_path_supplemental.R` delegates to those frozen production scripts so that the independent 200,000-replicate direction-selection calibration is preserved.

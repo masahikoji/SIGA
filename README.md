@@ -30,7 +30,7 @@ and a unified diff are retained with the active script.
   scenario roles and two analyses, using one-path calibration.
 - Independent SIGA-R randomization-targeted full grid: the same 56 roles and
   two analyses, using three-path calibration and the `1/n` safeguard.
-- Twenty-scenario pair-path stress study.
+- Twelve-scenario targeted pair-path sensitivity analysis reported in Supplementary Appendix G and Supplementary Table 5.
 - SWIFT DIRECT-inspired prospective design simulation based on published
   aggregate planning characteristics.
 - Standardized timing and one-path calibration benchmarks.
@@ -61,8 +61,7 @@ The R verifier checks directly that:
   for power;
 - the SIGA-R full grid has 112 comparisons and corresponding maxima 0.322,
   0.205, and 0.322 percentage points;
-- the pair-path stress maxima are 0.825 and 0.685 percentage points for SIGA-S
-  and SIGA-R;
+- the targeted pair-path sensitivity analysis contains 12 scenarios and 24 analyses; the maximum absolute SIGA-S--RT and SIGA-R--RT differences are 0.900 and 0.244 percentage points, respectively, and all prespecified primary gates pass;
 - the SWIFT DIRECT-inspired powers and 100,000-trial audit match the reported
   results;
 - the included standardized CSVs are reproducible from the raw production
