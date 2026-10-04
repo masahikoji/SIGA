@@ -1,111 +1,94 @@
-# SIGA: sampling and randomization calibration under biased-coin minimization
+# SIGA: sampling and conditional randomisation inference
 
-This repository accompanies:
+This working revision accompanies Masahiro Kojima's manuscript:
 
-> Kojima, M. *Fast Power Evaluation under Biased-Coin Minimization: Sampling and Randomization Calibration*.
+> Squared assignment correlations and randomisation tests of weak null hypotheses under covariate-adaptive allocation.
 
-It implements the historical equal-weight absolute-range Pocock-Simon
-allocation rule used in the study. It does not substitute a quadratic-
-potential allocation criterion.
+The historical `v1.0.0` tag identifies the original paper version,
+*Fast Power Evaluation under Biased-Coin Minimization: Sampling and Randomization
+Calibration*. Preserve that tag and its original source/output snapshots.
+The current working version is `1.1.0-dev`; no new public release or DOI is implied.
 
-## Repository structure
+## Original studies
 
-- `production/` contains the source snapshots used for the reported numerical
-  studies.
-- `data/production_results/raw/` contains the corresponding aggregate outputs.
-- `scripts/06_verify_production_results.R` recomputes the headline numerical
-  summaries from those aggregate outputs.
-- `reference_implementation/` contains a consolidated base-R implementation
-  for inspection, smoke tests, and small independent reruns.
+`production/`, `data/production_results/raw/`, `reference_implementation/` and
+`scripts/06_verify_production_results.R` retain the original R workflows and
+aggregate checks. The two original full grids used independent outer trials,
+with common trials for methods within each grid. The old 100,000-trial results
+are not results for the later covariance reconstruction.
 
-The production workflows and portable reference implementation are kept
-separate so that the provenance of the reported results is explicit. The
-binary large-n production workflow includes a documented aggregation
-correction for a base-R name-propagation issue; the archived original source
-and a unified diff are retained with the active script.
+## Revision contents
 
-## Included studies
+- `validation/code/`: unchanged, observed-data-only paired evaluation code and R adapter.
+- `validation/results_10k/`: complete outputs for 280 scenarios, each with 10,000
+  trials (2,800,000 trials total), saved plans and extension records.
+- `validation/results/`: archived 2,000-trial pilots already included in the 10,000 totals.
+- `validation/report/`: checks and deterministic table reproduction.
+- `validation/manuscript_20261004/`: the matching manuscript sources.
+- `additional_null_study/`: earlier R3 source/results and finite-state programs.
+- `theory_checks/`: supplied finite-condition and allocation-direction checks.
+- `REPRODUCIBILITY_STATUS.md`: verified scope and remaining provenance limitations.
 
-- SIGA-S sampling-targeted full grid: continuous and binary outcomes, 56
-  scenario roles and two analyses, using one-path calibration.
-- Independent SIGA-R randomization-targeted full grid: the same 56 roles and
-  two analyses, using three-path calibration and the `1/n` safeguard.
-- Twelve-scenario targeted pair-path sensitivity analysis reported in Supplementary Appendix G and Supplementary Table 5.
-- SWIFT DIRECT-inspired prospective design simulation based on published
-  aggregate planning characteristics.
-- Standardized timing and one-path calibration benchmarks.
+## Statistical and theoretical scope
 
-The two full-grid experiments are independent outer Monte Carlo runs. Methods
-within each experiment use common outer trials; RT percentages may therefore
-differ slightly between the SIGA-S and SIGA-R tables without contradiction.
+The manuscript compares sampling and conditional randomisation variances under an
+explicit joint allocation condition. The additional covariance is determined by
+squared assignment correlations given the ordered profiles; the variance difference
+involves that covariance minus the diagonal matrix of profile probabilities.
+Average-effect inference, approximation of the original randomisation test and
+variance rescaling of that test are distinct objectives. The corrected test retains
+original-scale ties; finite-sample sharp-null exactness is not established.
 
-## Requirements
+Joint allocation limits are verified for fixed-size stratified permuted blocks,
+stratified Efron biased coins, and stochastic equal-weight absolute-range
+Pocock--Simon minimisation including overall balance, for every positive joint law
+of two binary factors and more factors satisfying stated finite inequalities.
+This is not a result for every minimisation variant or every adaptive design.
 
-- Base R 4.2 or later is recommended.
-- No contributed R packages are required by the included simulation code.
-- Manuscript-scale reruns are computationally intensive and require sharding.
+The covariance reconstruction retains separately simulated overall/marginal moments
+and has the same first-order target for verified balance directions. The 10,000-trial
+study supports reduced variance overestimation in the motivating unadjusted settings;
+not all variance or tail-probability comparisons improve. Complete comparisons are
+included, with paired Monte Carlo standard errors. No new timing claim is inferred.
 
-## Verify the included results
+## Verification from the repository root
 
-From the repository root:
+Install the dependencies in `validation/code/requirements.txt`, then run:
 
 ```bash
-bash scripts/00_verify_manifest.sh
+python validation/report/reproduce_10k_report.py
+python validation/code/run.py test
+```
+
+The first command checks/reproduces tables from supplied aggregates, not 2.8 million
+new outcome trials. The second checks software/algebra, not performance superiority.
+After applying and reviewing this overlay, refresh the root checksum manifest:
+
+```bash
+python scripts/refresh_manifest.py --write
+python scripts/refresh_manifest.py --check
+```
+
+Original results can still be checked with:
+
+```bash
 Rscript scripts/06_verify_production_results.R
 ```
 
-The R verifier checks directly that:
+See `validation/README.md` for a fresh rerun using the exact saved 10,000-trial plan.
+Keep large active run directories outside cloud-synchronised folders.
 
-- the SIGA-S full grid has 112 comparisons and maximum absolute differences
-  0.422, 0.185, and 0.422 percentage points overall, at null boundaries, and
-  for power;
-- the SIGA-R full grid has 112 comparisons and corresponding maxima 0.322,
-  0.205, and 0.322 percentage points;
-- the targeted pair-path sensitivity analysis contains 12 scenarios and 24 analyses; the maximum absolute SIGA-S--RT and SIGA-R--RT differences are 0.900 and 0.244 percentage points, respectively, and all prespecified primary gates pass;
-- the SWIFT DIRECT-inspired powers and 100,000-trial audit match the reported
-  results;
-- the included standardized CSVs are reproducible from the raw production
-  aggregates.
+## Provenance and publication
 
-## Regenerate standardized result files
+The extension retains trial indices 0--1999 and adds 2000--9999 without changing
+methods, scenarios, master seed, inner draws or allocation estimates. This is an
+increase in Monte Carlo precision, not an independent confirmatory experiment.
+Actual plans and source signatures now reconcile the earlier pilot identifiers.
+Raw checkpoint files, actual calibration arrays and runtime logs were not supplied
+in this update; aggregate checks do not authenticate every originating execution.
 
-```bash
-Rscript scripts/08_make_standardized_results.R
-```
-
-## Smoke checks
-
-```bash
-Rscript production/common/check_pair_path_engine.R
-Rscript production/common/00_verify_rt_kernel_equivalence.R
-Rscript reference_implementation/scripts/99_smoke_test.R
-```
-
-## Production reruns
-
-See `production/README.md`. Do not use the same cloud-synchronized shard
-output directory from multiple machines. Use disjoint shard identifiers and
-merge only after completion.
-
-## Method conventions
-
-- Equal-weight sum of absolute overall and active marginal imbalances.
-- Probability 0.5 for exact allocation ties.
-- Inclusive plus-one Monte Carlo randomization-test p-values.
-- Lattice-normal mixture only for unadjusted binary superiority at boundary
-  zero in SIGA-S; Gaussian tails otherwise and for all reported SIGA-R tests.
-- Two-sided absolute-value superiority tests, upper-tail non-inferiority tests,
-  and intersection-union equivalence tests.
-- SIGA-R safeguard `max(V_R_raw, V_S/n)`.
-
-## Theoretical scope
-
-The numerical implementation exactly follows the absolute-range rule. The
-analysis retains the required one-copy and three-copy allocation limits as
-explicit assumptions; simulation is not claimed to prove the unresolved
-global stability and additive-functional CLT steps.
-
-## Citation and license
-
-Citation metadata are in `CITATION.cff`. The included license is restrictive;
-replace it before public release if permissive reuse is intended.
+The older R3 strong-setting CSV is still explicitly reconstructed from rounded
+aggregates; the new 10,000-trial data do not restore that separate original output.
+The licence is unchanged. Finalise a new immutable release, archive it with a DOI,
+and update the manuscript's code citation before acceptance. Do not invent a
+release URL or move the existing v1.0.0 tag.

@@ -1,16 +1,15 @@
 cff-version: 1.2.0
-message: "Please cite this software and the accompanying manuscript."
-title: "SIGA: sampling and randomization calibration under biased-coin minimization"
-version: "1.0.0"
-date-released: "2026-08-03"
+message: "Please cite the version of this software that produced the results used."
+title: "SIGA: sampling and conditional randomisation inference"
+version: "1.1.0-dev"
+type: software
 authors:
   - family-names: "Kojima"
     given-names: "Masahiro"
 repository-code: "https://github.com/masahikoji/SIGA"
-type: software
 preferred-citation:
-  type: article
-  title: "Fast Power Evaluation under Biased-Coin Minimization: Sampling and Randomization Calibration"
+  type: unpublished
+  title: "Squared assignment correlations and randomisation tests of weak null hypotheses under covariate-adaptive allocation"
   authors:
     - family-names: "Kojima"
       given-names: "Masahiro"
