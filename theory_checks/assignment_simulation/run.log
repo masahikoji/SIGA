@@ -1,0 +1,6 @@
+F=5 n=400 B=200000 p=0.8 master_seed=926210031 threads=4 seconds=1.8767
+F=5 n=400 B=100000 p=0.8 master_seed=926210057 threads=4 seconds=0.926574
+F=5 n=2000 B=200000 p=0.8 master_seed=926210083 threads=4 seconds=8.35602
+F=5 n=2000 B=100000 p=0.8 master_seed=926210109 threads=4 seconds=4.2469
+F=5 n=400 B=200000 p=0.5 master_seed=926210135 threads=4 seconds=1.78348
+F=5 n=400 B=100000 p=0.5 master_seed=926210161 threads=4 seconds=0.943183

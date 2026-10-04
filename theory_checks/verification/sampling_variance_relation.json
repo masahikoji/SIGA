@@ -1,0 +1,8 @@
+{
+  "target_allocation_fraction": "1/2",
+  "imbalance_scaling": "D_SIGA = 2 * D_BCS",
+  "variance_scale": "16 * v_S",
+  "symbolic_difference": "0",
+  "dependence_on_potential_outcome_covariance": "0",
+  "all_exact_checks_passed": true
+}

@@ -1,0 +1,9 @@
+The eight scripts listed in run_checks.sh were rerun for this revision.
+The current execution logs are in ../audit. The first aggregate invocation
+hit a time limit after the first three checks; the independent-box script
+and remaining scripts were then run separately to completion.
+Stored exact certificates are checked inputs. The scalar Monte Carlo
+results are archival data, not newly simulated values. No new trial or
+assignment Monte Carlo simulation was performed in this revision.
+Finite checks support the corresponding algebra and inequalities; they do
+not constitute a formal verification of the infinite-state proofs.

@@ -1,0 +1,10 @@
+{
+  "python": "3.13.5",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "compiler": "g++ (Debian 14.2.0-19) 14.2.0",
+  "original_rule_git_blob": "eaa192aceaa17449cfc0daa5095b427b09fb814b",
+  "compiled_rule_equivalence_test_assignments": 600000,
+  "serial_parallel_exact_match": true
+}

@@ -1,0 +1,38 @@
+{
+  "method": "exhaustive enumeration with exact rational arithmetic",
+  "cases": [
+    {
+      "block_length": 2,
+      "balanced_vectors": 2,
+      "independent_triples_enumerated": 8,
+      "pair_reward_variance": "4",
+      "pair_variance_per_observation": "2",
+      "triple_reward_variance": "0",
+      "distinct_pair_cross_moments": "0",
+      "pair_triple_cross_moment": "0",
+      "all_exact_checks_passed": true
+    },
+    {
+      "block_length": 4,
+      "balanced_vectors": 6,
+      "independent_triples_enumerated": 216,
+      "pair_reward_variance": "16/3",
+      "pair_variance_per_observation": "4/3",
+      "triple_reward_variance": "32/9",
+      "distinct_pair_cross_moments": "0",
+      "pair_triple_cross_moment": "0",
+      "all_exact_checks_passed": true
+    },
+    {
+      "block_length": 6,
+      "balanced_vectors": 20,
+      "independent_triples_enumerated": 8000,
+      "pair_reward_variance": "36/5",
+      "pair_variance_per_observation": "6/5",
+      "triple_reward_variance": "144/25",
+      "distinct_pair_cross_moments": "0",
+      "pair_triple_cross_moment": "0",
+      "all_exact_checks_passed": true
+    }
+  ]
+}

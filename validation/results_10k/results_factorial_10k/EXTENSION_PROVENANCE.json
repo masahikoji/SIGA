@@ -1,0 +1,13 @@
+{
+  "analysis_source_signature": "c70e90a5f7f6060a1daa5fe3cf62ac219a29be6a3e7d5f0a795031a69c867182",
+  "calibration_replicates_per_design": 20000,
+  "new_plan_hash": "56a3c4bd81f96eb70ff6a1646d2c041e5cc8aaf0a3513f457bbb9d7b81216794",
+  "reference_draws_per_trial": 999,
+  "reused_trial_chunks": 800,
+  "reused_trial_records": 80000,
+  "scenarios": 40,
+  "source_directory": "validation/results/results_factorial_pilot",
+  "source_outer_per_scenario": 2000,
+  "source_plan_hash": "e23a5243e807452319bec09c64e468909dd1cfe80b20104791bef82490f01302",
+  "target_outer_per_scenario": 10000
+}

@@ -1,0 +1,26 @@
+{
+  "main_model_box": {
+    "corners_independently_verified": 32,
+    "all_minima_match": true,
+    "minima": [
+      "1",
+      "0",
+      "106599553003/500000000000",
+      "2350349001/2000000000000"
+    ],
+    "coefficient_method": "independent-factor conditional mean differences; exact rational arithmetic",
+    "base_method": "explicit enumeration of every chamber vertex"
+  },
+  "production_trial_box": {
+    "corners_independently_verified": 32,
+    "all_minima_match": true,
+    "minima": [
+      "1",
+      "0",
+      "63596532191/250000000000",
+      "2662521147/1000000000000"
+    ],
+    "coefficient_method": "independent-factor conditional mean differences; exact rational arithmetic",
+    "base_method": "explicit enumeration of every chamber vertex"
+  }
+}

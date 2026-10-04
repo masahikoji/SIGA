@@ -1,0 +1,51 @@
+{
+  "implementation": "SymPy exact inverse and explicit finite chamber vertices; no import of original checker",
+  "results": [
+    {
+      "case": "main_two_factors",
+      "all_coefficients_and_inequalities_agree": true,
+      "explicit_chamber_vertices_checked": 36,
+      "normal_equations_verified": true,
+      "structural_zero_rays_verified": true,
+      "c0": "1",
+      "c1": "1/2",
+      "minimum_ray": "0",
+      "certificate_pass": true
+    },
+    {
+      "case": "main_five_factors",
+      "all_coefficients_and_inequalities_agree": true,
+      "explicit_chamber_vertices_checked": 7776,
+      "normal_equations_verified": true,
+      "structural_zero_rays_verified": true,
+      "c0": "1",
+      "c1": "134/625",
+      "minimum_ray": "0",
+      "certificate_pass": true
+    },
+    {
+      "case": "trial_five_factors",
+      "all_coefficients_and_inequalities_agree": true,
+      "explicit_chamber_vertices_checked": 7776,
+      "normal_equations_verified": true,
+      "structural_zero_rays_verified": true,
+      "c0": "1",
+      "c1": "159670787/625000000",
+      "minimum_ray": "0",
+      "certificate_pass": true
+    },
+    {
+      "case": "certificate_failure_not_instability",
+      "all_coefficients_and_inequalities_agree": true,
+      "explicit_chamber_vertices_checked": 7776,
+      "normal_equations_verified": true,
+      "structural_zero_rays_verified": true,
+      "c0": "-251243719/312500000",
+      "c1": "29403/50000000",
+      "minimum_ray": "0",
+      "certificate_pass": false
+    }
+  ],
+  "original_integer_rule_checks": 3000,
+  "arbitrary_joint_two_factor_projection_identity_checks": 100
+}

@@ -1,0 +1,40 @@
+{
+  "counterexample": [
+    {
+      "r": "3/5",
+      "configurations": 256,
+      "gap_for_d_1_minus1": "-1/800"
+    },
+    {
+      "r": "4/5",
+      "configurations": 256,
+      "gap_for_d_1_minus1": "-9/800"
+    },
+    {
+      "r": "19/20",
+      "configurations": 256,
+      "gap_for_d_1_minus1": "-81/3200"
+    }
+  ],
+  "finite_covariance_identity": {
+    "configurations": 256,
+    "passed": true
+  },
+  "efron_drift": {
+    "exact_integer_state_checks": 75,
+    "passed": true
+  },
+  "spectral_coordinates": {
+    "max_absolute_eigenvalue_difference": 4.440892098500626e-16,
+    "passed": true
+  },
+  "archived_diagnostics": {
+    "source": "https://github.com/masahikoji/SIGA/blob/v1.0.0/data/production_results/raw/pair_path_supplemental/design_pair_path_diagnostics.csv",
+    "git_blob_sha": "27a39178656bb285340891193c64112e5e5d21b2",
+    "sha256": "5f084bc2dcc7dac24e66d46df98f32bfce1c4f2170a6d8c38107037c11987a2e",
+    "rows": 6,
+    "values_match_manuscript": true,
+    "covariance_matrices_recomputed": false
+  },
+  "new_trial_simulations": 0
+}

@@ -1,0 +1,462 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,setspace}
+\usepackage{amsmath,amssymb,amsthm,bm,mathtools}
+\usepackage{booktabs,array,threeparttable,needspace}
+\usepackage[round,authoryear]{natbib}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Squared assignment correlations and randomisation tests of weak null hypotheses under covariate-adaptive allocation},pdfauthor={Masahiro Kojima}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{definition}
+\newtheorem{assumption}{Assumption}
+\newcommand{\E}{\operatorname E}
+\newcommand{\Pbb}{\mathbb P}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\sg}{\operatorname{sgn}_0}
+\newcommand{\CodeRepository}{\url{https://github.com/masahikoji/SIGA/releases/tag/v1.0.0}}
+\setlength{\emergencystretch}{2em}
+\allowdisplaybreaks[2]
+\renewenvironment{abstract}{\par\noindent\textbf{Abstract}\par}{\par}
+\title{Squared assignment correlations and randomisation tests of weak null hypotheses under covariate-adaptive allocation}
+\author{Masahiro Kojima\\[2mm]
+\normalsize Department of Data Science for Business Innovation, Chuo University\\
+\normalsize 1-13-27 Kasuga, Bunkyo-ku, Tokyo 112-8551, Japan\\
+\normalsize \texttt{mkojima263@g.chuo-u.ac.jp}}
+\date{}
+\begin{document}
+\setstretch{1.72}
+\begin{center}
+\begin{spacing}{1.0}
+{\Large\bfseries Squared assignment correlations and\\[2mm]
+randomisation tests of weak null hypotheses\\[2mm]
+under covariate-adaptive allocation}\par\vspace{5mm}
+{\large Masahiro Kojima}\par\vspace{3mm}
+Department of Data Science for Business Innovation, Chuo University\\
+1-13-27 Kasuga, Bunkyo-ku, Tokyo 112-8551, Japan\\
+\texttt{mkojima263@g.chuo-u.ac.jp}\\[2mm]
+\textit{Running head:} Squared assignment correlations
+\end{spacing}
+\end{center}
+
+\begin{abstract}
+Under covariate-adaptive allocation, a randomisation test may retain an observed outcome score while regenerating assignments under the trial's rule. With heterogeneous effects, the score can depend on observed assignments even under an average-effect null. We derive the first-order difference between conditional reference and repeated-sampling variances under explicit allocation conditions. The difference is a quadratic form involving stratum-specific effect deviations and the limiting covariance of treatment-sign products minus the diagonal matrix of stratum probabilities. This covariance depends on squared conditional assignment correlations and is not determined by the usual imbalance covariance alone. We give conditions for equality, conservativeness and anti-conservativeness, and show that allocation conducted independently within strata cannot give a smaller limiting reference variance. Variance rescaling yields an asymptotically valid corrected test. We establish the required joint limits for fixed-size stratified permuted blocks, stratified Efron biased coins and, under explicit conditions on binary factors, stochastic Pocock--Simon range minimisation. Reusable covariance estimates give Gaussian approximations that avoid nested rerandomisation in power calculations. Continuous- and binary-outcome studies show reduced variance overestimation after covariance reconstruction in the motivating unadjusted settings and limitations for discrete tails.
+\end{abstract}
+
+\noindent\textit{Keywords:} average treatment effect; covariate-adaptive randomisation; minimisation; randomisation test; sample-size calculation; weak null hypothesis.
+
+\section{Introduction}
+
+Covariate-adaptive randomisation uses baseline covariates to balance treatment groups on prespecified characteristics. One design-based analysis retains the observed outcomes, or a score derived from them, and regenerates assignments under the rule used in the trial. Such analyses have been studied for minimisation and other adaptive procedures \citep{GailEtAl1988,HasegawaTango2009,SimonSimon2011,ParhatEtAl2014,ProschanDodd2019}. Pocock--Simon minimisation balances prognostic factors without separate blocks for every combination of their levels \citep{PocockSimon1975,CoartEtAl2023}. Its dependent assignments make the relationship between allocation and analysis important. US Food and Drug Administration guidance discusses minimisation and appropriate analyses, including randomisation or permutation tests \citep[Section~V.E]{FDA2019Adaptive}; China's Center for Drug Evaluation recommends prespecifying the random component and considering the corresponding analysis and type I error \citep[Sections~II(4) and~IV(3)]{NMPA2022Randomization}.
+
+For inference on an average treatment effect, the null hypothesis allows individual effects to vary. After subtraction of a tested effect, an outcome score is invariant to assignment under the corresponding constant-effect sharp null, but may retain the original assignments under an average-effect weak null. Its regenerated reference distribution need not then agree with the repeated-sampling distribution relevant to average-effect inference. Existing approaches include adjusted sampling-based tests and robust average-effect estimators \citep{ShaoEtAl2010,ShaoYu2013,MaEtAl2015,MaEtAl2020,YeEtAl2022,YeEtAl2023}, studentised permutation procedures \citep{BugniCanayShaikh2018,WuDing2021,ZhaoDing2021} and Gaussian prepivoting \citep{CohenFogarty2022}. In particular, \citet{BugniCanayShaikh2018} permute labels within strata and recalculate studentised statistics; here the observed score is retained and the original sequential rule is regenerated. When this analysis is planned, its type I error under an average-effect null and its power under specified alternatives must be understood before fixing the analysis plan and sample size. Direct evaluation is possible, but requires a randomisation loop inside each simulated trial.
+
+Covariance-based normal approximations, including fixed baseline-regression residuals, have precedent in \citet{Smith1984}. For covariate-adaptive sampling inference, recurrence and limit results for allocation processes and simulation-based estimation of the usual stratum-imbalance covariance are available \citep{HuHu2012,HuZhang2020,ZhaoEtAl2024}. For independent factors, \citet{KuznetsovaEtAlInPress} propose a covariance formula whose underlying proportionality relation remains a conjecture. These results suggest replacing repeated randomisation by a reusable covariance estimate. The difficulty is that, under heterogeneous effects, multiplying the retained score by regenerated treatment signs also produces products of the original and regenerated signs. Their covariance depends on squared conditional correlations between participants' assignments and is not determined by the usual imbalance covariance alone. We derive the difference between the conditional reference and sampling variances as a quadratic form in stratum-specific effect deviations. This identifies when the variances coincide and when the reference test is conservative or anti-conservative. Allocation conducted independently within strata cannot yield a smaller limiting reference variance. Separate estimation of the two variances also gives an asymptotically valid rescaling of the reference test.
+
+Application to Pocock--Simon minimisation requires a joint limit for several allocation sequences and their treatment-sign products. The allocation theory in \citet{HuHu2012}, \citet{HuZhang2020} and \citet{ZhaoEtAl2024} covers rules based on weighted linear combinations of current imbalances, equivalently differences between weighted squared-imbalance criteria. The absolute-range criterion can prefer a different arm \citep{CoartEtAl2023}. For the stochastic equal-weight range rule including overall balance, we derive the required joint limit and moments by multistep drift and regeneration. The result covers every positive joint distribution of two binary factors and, for a fixed larger number of binary factors, distributions satisfying finite inequalities in their profile probabilities. Other verified designs include fixed-size stratified permuted blocks and stratified Efron biased coins. Further examples distinguish between-stratum dependence from a necessarily negative variance difference.
+
+The resulting stratum-imbalance Gaussian approximations (SIGA) use the sampling variance for average-effect inference (SIGA-S) and the conditional reference variance for the specified randomisation test (SIGA-R). Covariances estimated without outcomes can be reused across outcome scenarios and tested effects for a fixed allocation rule, profile law and sample size, avoiding nested regeneration in power calculations. For minimisation, a reconstruction additionally preserves simulated overall and marginal imbalance moments without changing the first-order limit. Continuous- and binary-outcome studies and a trial-based illustration assess the original approximations. A paired study evaluates the reconstruction with estimated, rather than model-known, stratum effects, separating its effect on variance estimation from finite-sample tail approximation.
+
+\section{Reference randomisation analysis and allocation conditions}\label{sec:methods}\label{sec:general-allocation}
+Let $S_i\in\{1,\ldots,J\}$ denote a finite-valued baseline profile used by a two-arm covariate-adaptive randomisation design, $A_i\in\{0,1\}$ the treatment assignment and $Z_i=2A_i-1\in\{-1,1\}$ its sign. The value of $S_i$ indexes the joint stratum of participant $i$; we refer to the $J$ strata and to the profile sequence $S_1,\ldots,S_n$. The allocation rule uses the ordered profiles and its own random numbers, but no outcomes or additional participant information. A regenerated allocation sequence is a new application of the same rule, with fresh random numbers, to the same ordered profiles. Conditional on those profiles, the path law is unchanged by interchanging the two treatment labels; we call this property label symmetry.
+
+Let $Y_i(a)$ be the potential outcome under treatment $a$, let $Y_i=A_iY_i(1)+(1-A_i)Y_i(0)$ and define the marginal effect $\Delta=\E\{Y_i(1)-Y_i(0)\}$. Binary outcomes are analysed on the risk-difference scale. For a null value $b$, the weak null hypothesis $\Delta=b$ specifies the marginal mean effect while allowing individual treatment effects to vary. Set $W_i(b)=Y_i-bA_i$. For baseline adjustment, let $C$ contain an intercept and a fixed set of prespecified baseline functions, but no treatment indicator, and define the residual vector
+\[
+ \bm r(b)=M_C\bm W(b),\qquad
+ M_C=I-C(C^\top C)^{-1}C^\top ,
+\]
+referred to below as the score. The unadjusted score uses only the intercept. A Moore--Penrose inverse can be used in a finite sample if the Gram matrix is singular; the population condition below makes this event asymptotically negligible. For any centred score,
+\begin{equation}\label{eq:T-score}
+ T_n(\bm r)=\tfrac12\bm Z^\top\bm r
+          =\frac{n_1n_0}{n}(\bar r_1-\bar r_0),
+\end{equation}
+where $n_a=\sum_i\mathbf1(A_i=a)$ and $\bar r_a=n_a^{-1}\sum_{A_i=a}r_i$. The second equality applies when both treatment groups are represented. The use of baseline regression residuals in a randomisation statistic also appears in \citet[equations~(10.7)--(10.8)]{Smith1984}.
+
+The reference randomisation test computes $\bm r(b)$ once from the observed data and holds that vector fixed. For independently regenerated allocation sequences $\bm Z^{*(1)},\ldots,\bm Z^{*(B)}$, it uses $T_{n,j}^*(\bm r)=\bm Z^{*(j)\top}\bm r/2$. For example, the inclusive two-sided Monte Carlo $p$-value is
+\begin{equation}\label{eq:rt-p}
+ \widehat p_{\rm RT}=\frac{1+\sum_{j=1}^B
+ \mathbf1\{|T_{n,j}^*|\ge|T_n|\}}{B+1}.
+\end{equation}
+One-sided tests use the corresponding tail. The plus-one convention prevents zero Monte Carlo $p$-values \citep{PhipsonSmyth2010}.
+
+The identity
+\begin{equation}\label{eq:Qdelta-identity}
+ W_i(b)=Q_i(b)+\tfrac12Z_i\delta_i(b),\quad
+ Q_i(b)=\tfrac12\{Y_i(1)+Y_i(0)-b\},\quad
+ \delta_i(b)=Y_i(1)-Y_i(0)-b
+\end{equation}
+shows why the two reference distributions can differ. At $\Delta=b$, $\E\{\delta_i(b)\}=0$ does not imply $\delta_i(b)=0$. If instead $Y_i(1)-Y_i(0)=b$ for every participant, then $\delta_i(b)=0$ and the adjusted outcome is invariant to assignment. For binary potential outcomes a constant individual effect can only equal $-1$, $0$ or $1$; the values $-1$ and $1$ force deterministic potential outcomes. Thus an interior nonzero risk-difference null value cannot be represented by this sharp null.
+
+Let $h(S_i)$ be the $J$-vector indicating the observed profile and let $\bm\pi=\E\{h(S_i)\}$, $\Pi=\diag(\bm\pi)$. Generate an observed allocation sequence, indexed by 0, and two independent regenerated sequences, indexed by 1 and 2, conditional on the same profile sequence. Define
+\[
+ R_n=n^{-1/2}\sum_i\{h(S_i)-\bm\pi\},\qquad
+ D_n^{(a)}=\sum_i h(S_i)Z_i^{(a)},
+\]
+and, for $a\ne b$,
+\begin{equation}\label{eq:G-general}
+ G_n^{(ab)}=n^{-1/2}\sum_i h(S_i)Z_i^{(a)}Z_i^{(b)}.
+\end{equation}
+The second regenerated sequence is an auxiliary independent repetition used to establish convergence of the conditional distribution; the definition of the covariance correction requires only the observed sequence and one regenerated sequence.
+
+\Needspace{11\baselineskip}
+\begin{assumption}\label{ass:main-general-allocation}
+The profiles are independent and identically distributed, $J$ is fixed, and $\pi_s>0$ for every $s$. Conditional on the complete profile sequence, the three allocation sequences are independent repetitions of the same label-symmetric rule. For finite positive-semidefinite matrices $\Sigma_D$ and $\Psi_D$,
+\begin{align}\label{eq:general-alloc-clt}
+ &(R_n,D_n^{(0)}/\sqrt n,D_n^{(1)}/\sqrt n,D_n^{(2)}/\sqrt n,
+ G_n^{(01)},G_n^{(02)},G_n^{(12)})\nonumber\\
+ &\quad\Rightarrow N\{0,\diag(\Pi-\bm\pi\bm\pi^\top,
+ \Sigma_D,\Sigma_D,\Sigma_D,\Psi_D,\Psi_D,\Psi_D)\}.
+\end{align}
+The corresponding second moments converge, the normalised fourth moments are bounded, and the normalised triple product $n^{-1/2}\sum_i h(S_i)Z_i^{(0)}Z_i^{(1)}Z_i^{(2)}$ is $O_p(1)$.
+\end{assumption}
+
+Assumption~\ref{ass:main-general-allocation} specifies the joint allocation properties used by the inference argument. Section~\ref{sec:minimization} derives them from the stochastic range method on the stated class of profile distributions. Independent equal-probability assignment, fixed-size stratified permuted blocks and stratified Efron biased coins are verified in Supplementary Appendix~H.
+
+\section{Sampling and conditional randomisation inference}\label{sec:theory}
+\subsection{Covariance estimation from simulated assignments}
+Let $H$ be the stratum indicator matrix, $N=H^\top H$, $P_H=HN^+H^\top$, $\bar{\bm r}=N^+H^\top\bm r$ and $\bm e=(I-P_H)\bm r$. Empty strata use the Moore--Penrose inverse. The exact projection
+\begin{equation}\label{eq:projection}
+ T_n(\bm r)=\tfrac12\bar{\bm r}^{\top}D_n^{(0)}+\tfrac12\bm Z^{(0)\top}\bm e
+\end{equation}
+separates the contribution of stratum treatment imbalance from the within-stratum score component.
+
+For a given design and sample size, simulate $B_0$ independent sequences of profiles and treatment assignments without generating outcomes. In each simulation compute $U_s=D_s/\sqrt{N_s}$ for $N_s>0$ and zero otherwise, and let $\widehat\Gamma_n$ be the sample covariance of these vectors. For an outcome trial define
+\[
+ \widetilde\Omega_n=N^{1/2}\widehat\Gamma_n N^{1/2},\qquad
+ \widehat\kappa_n=\max\left\{\frac{n-\operatorname{tr}(N^+\widetilde\Omega_n)}{n-J_+},0\right\},
+\]
+where $J_+$ is the number of represented strata; set $\widehat\kappa_n=0$ if $n=J_+$. The sampling-variance estimator is
+\begin{equation}\label{eq:VS-main}
+ \widehat V_{{\rm S},n}(\bm r)=
+ \tfrac14\{\bar{\bm r}^{\top}\widetilde\Omega_n\bar{\bm r}
+                  +\widehat\kappa_n\bm e^\top\bm e\}.
+\end{equation}
+The matrix construction underlying (\ref{eq:VS-main}) is positive semidefinite and preserves $\widetilde\Omega_n$ as the covariance assigned to the stratum-specific imbalances. When the positive-part constraint is inactive, its trace is $n$, the trace of a label-symmetric sign covariance. Supplementary Appendix~A.1 gives this covariance construction and its large-sample justification.
+
+For minimisation, the covariance of the overall and marginal imbalances provides additional finite-sample information. Let $\mathsf L$ be the full-row-rank contrast matrix defined in Section~\ref{sec:minimization}, and estimate $\Xi_n=\Cov(\mathsf L D_n)$ by the sample covariance $\widehat\Xi_n$ of $\mathsf L D_n$ from the same allocation simulations. This is a covariance averaged over simulated profiles, not the exact covariance conditional on a particular trial's ordered profiles. For the realised counts, put
+\[
+ B_N=N^{1/2}\mathsf L^\top,\qquad
+ Q_N=B_N(B_N^\top B_N)^{-1},\qquad P_N=Q_NB_N^\top.
+\]
+When $B_N$ has full column rank, define
+\[
+ \widehat\Gamma_n^{\,*}
+ =(I-P_N)\widehat\Gamma_n(I-P_N)+Q_N\widehat\Xi_nQ_N^\top,
+ \qquad
+ \widetilde\Omega_n^{\,*}=N^{1/2}\widehat\Gamma_n^{\,*}N^{1/2}.
+\]
+Otherwise retain $\widetilde\Omega_n^{\,*}=\widetilde\Omega_n$. This construction is positive semidefinite and, on the full-rank event, satisfies $\mathsf L\widetilde\Omega_n^{\,*}\mathsf L^\top=\widehat\Xi_n$. Use it in (\ref{eq:VS-main}), with the trace coefficient recomputed, to obtain $\widehat V_{{\rm S},n}^{\,*}$. The effect-deviation correction below is unchanged when defining $\widehat V_{{\rm R},n}^{\,*}$. No outcome model or treatment-effect value enters this covariance reconstruction. Supplementary Appendix~A.4 proves that, under the minimisation conditions, both constructions have the same first-order targets. The reconstruction uses known asymptotic balance directions; it is not imposed on designs for which $\Sigma_D\mathsf L^\top\ne0$.
+
+
+To approximate the reference randomisation distribution, independently simulate pairs of allocation sequences conditional on common profile sequences and use the sample covariance of $G_n^{(01)}$ to estimate $\Psi_D$; denote it by $\widehat\Psi_n$. The reported three-sequence implementation averages the sample covariance matrices for $G_n^{(01)}$ and $G_n^{(02)}$, rather than taking the covariance of their average. Set $\widehat\Pi_n=N/n$ and
+\[
+ d_s(b)=\E\{Y_i(1)-Y_i(0)-b\mid S_i=s\}.
+\]
+The original design-stage studies use $\bm d(b)$ supplied by the prespecified outcome model. The additional null study also examines the data-based estimator $\widehat{\bm d}(b)$, the vector of within-stratum arm-mean differences minus $b$, defined in Supplementary Appendix~C.2 and used by the corrected test of Section~\ref{sec:corrected}. Define
+\begin{align}\label{eq:VRraw-main}
+ \widehat V_{{\rm R},n}^{\rm raw}(b)
+ &=\widehat V_{{\rm S},n}\{\bm r(b)\}
+   +\tfrac n{16}\widehat{\bm d}(b)^\top
+             (\widehat\Psi_n-\widehat\Pi_n)\widehat{\bm d}(b),\\
+ \widehat V_{{\rm R},n}(b)
+ &=\max\{\widehat V_{{\rm R},n}^{\rm raw}(b),
+               \epsilon_n\widehat V_{{\rm S},n}\{\bm r(b)\}\},
+ \qquad \epsilon_n\downarrow0.\label{eq:VR-main}
+\end{align}
+The procedures based on (\ref{eq:VS-main}) and (\ref{eq:VR-main}) are SIGA-S and SIGA-R, respectively. Write $Z_{\star,n}(b)=T_n\{\bm r(b)\}/\sqrt{\widehat V_{\star,n}(b)}$ for $\star\in\{{\rm S},{\rm R}\}$. Gaussian upper-tail, lower-tail and two-sided $p$-values are $1-\Phi(Z_{\star,n})$, $\Phi(Z_{\star,n})$ and $2\{1-\Phi(|Z_{\star,n}|)\}$; $\Phi$ is the standard normal distribution function and $z_\gamma=\Phi^{-1}(\gamma)$. For the limit statements, statistics may be defined arbitrarily when the variance estimate is nonpositive; the probability of this event tends to zero under the positive-variance conditions below.
+
+The raw ratio $\widehat V_{{\rm R},n}^{\rm raw}/\widehat V_{{\rm S},n}$ describes the size of the covariance adjustment, without masking activation of the floor in (\ref{eq:VR-main}). At $\Delta=b$ its denominator estimates the sampling variance. At a fixed alternative it instead estimates the limit of the same score quadratic, not necessarily the variance of the centred statistic. Its practical relevance should be judged by the resulting change in rejection probability or selected sample size.
+
+\subsection{Limiting distributions}
+\begin{assumption}\label{ass:main-participants}
+The vectors $(S_i,\bm c_i,Y_i(0),Y_i(1))$ are independent and identically distributed. For some $\eta>0$, $\E\{\|\bm c_i\|^{4+\eta}+|Y_i(0)|^{4+\eta}+|Y_i(1)|^{4+\eta}\}<\infty$. The fixed-dimensional $\bm c_i$ contains an intercept and $\E(\bm c_i\bm c_i^\top)$ is positive definite. Conditional on the complete profile sequence, all allocation random numbers are jointly independent of the remaining participant variables.
+\end{assumption}
+Neither a correct linear outcome model nor homogeneous treatment effects are required.
+
+\begin{assumption}\label{ass:main-calibration}
+The covariance estimates use the trial's allocation rule and either its known profile law or an estimated law meeting the local conditions in Supplementary Appendix~A.4. Replicates are conditionally independent given that law; their fresh random numbers are independent of the trial and regenerated reference sequences. The numbers of replicates tend to infinity. Any regularisation differs from the raw sample covariance by $o_p(1)$ in operator norm.
+\end{assumption}
+The sampling result uses $B_0(n)\to\infty$; estimation of $\Psi_D$ additionally uses $B_\Psi(n)\to\infty$. For the reconstructed covariance, the $o_p(1)$ difference from the original count-standardised covariance is proved in Supplementary Appendix~A.4 rather than imposed as an additional assumption. For the range method, a consistently estimated profile distribution may replace the known distribution under the local conditions proved in Supplementary Appendix~A.4. The simulation random numbers must then be independent of the trial conditional on that estimated distribution. A vanishing eigenvalue threshold satisfying Assumption~\ref{ass:main-calibration} and equal to the tolerance of the released code at all reported sample sizes is specified in that appendix.
+
+Define
+\[
+ \bm\beta_b=\{\E(\bm c_i\bm c_i^\top)\}^{-1}\E\{\bm c_iQ_i(b)\},\qquad
+ q_i(b)=Q_i(b)-\bm c_i^\top\bm\beta_b,
+\]
+\[
+ m_s(b)=\E\{q_i(b)\mid S_i=s\},\qquad
+ \nu_i^Q(b)=q_i(b)-m_{S_i}(b),\qquad \bm m(b)=(m_s(b))_{s=1}^J.
+\]
+Let $\mathcal O_n$ be generated by the observed profiles, baseline variables, outcomes and allocation sequence. The metric $d_{\rm BL}$ below is the bounded-Lipschitz metric for weak convergence of probability laws. Statements about the reference test use its ideal distribution; they also apply to its Monte Carlo implementation when $B=B_n\to\infty$.
+
+\Needspace{10\baselineskip}
+\begin{theorem}\label{thm:main-sampling}
+Under Assumptions~\ref{ass:main-general-allocation}, \ref{ass:main-participants} and \ref{ass:main-calibration}, at $\Delta=b$,
+\begin{equation}\label{eq:vS-main}
+ \frac{T_n\{\bm r(b)\}}{\sqrt n}\Rightarrow N\{0,v_{\rm S}(b)\},\qquad
+ \frac{\widehat V_{{\rm S},n}\{\bm r(b)\}}n\to_p v_{\rm S}(b),
+\end{equation}
+where
+\[
+ v_{\rm S}(b)=\tfrac14\left\{\bm m(b)^\top\Sigma_D\bm m(b)+
+ \E[(\nu_i^Q(b))^2]+\tfrac14\E[\delta_i(b)^2]\right\}.
+\]
+If $v_{\rm S}(b)>0$, then $T_n\{\bm r(b)\}/\widehat V_{{\rm S},n}^{1/2}\Rightarrow N(0,1)$.
+\end{theorem}
+
+\Needspace{9\baselineskip}
+\begin{theorem}\label{thm:main-randomization}
+Under Assumptions~\ref{ass:main-general-allocation} and \ref{ass:main-participants}, for any fixed null value $b$,
+\begin{equation}\label{eq:conditional-main}
+ d_{\rm BL}\left[\mathcal L\left\{\frac{T_n^*\{\bm r(b)\}}{\sqrt n}
+                  \mathrel{\Big|}\mathcal O_n\right\},N\{0,v_{\rm R}(b)\}\right]\to_p0,
+\end{equation}
+where
+\begin{equation}\label{eq:vR-main}
+ v_{\rm R}(b)=\tfrac14\left\{\bm m(b)^\top\Sigma_D\bm m(b)+\E[(\nu_i^Q(b))^2]
+ +\tfrac14\E[\Var\{\delta_i(b)\mid S_i\}]+\tfrac14\bm d(b)^\top\Psi_D\bm d(b)\right\}.
+\end{equation}
+\end{theorem}
+
+\begin{corollary}\label{cor:main-randomization-estimator}
+Under the assumptions of Theorem~\ref{thm:main-randomization} and Assumption~\ref{ass:main-calibration}, suppose $v_{\rm R}(b)>0$ and the observed-data or model-based estimator satisfies $\widehat{\bm d}(b)\to_p\bm d(b)$. Then $\widehat V_{{\rm R},n}(b)/n\to_pv_{\rm R}(b)$, and the ideal reference and SIGA-R $p$-values differ by $o_p(1)$. Estimation from $B$ independent regenerated sequences adds $O_p(B^{-1/2})$ error.
+\end{corollary}
+
+The equivalence is an absolute $p$-value statement, obtained from uniform convergence of the conditional distribution functions. The additional covariance appears in the within-stratum residual expansion
+\begin{equation}\label{eq:pair-expansion}
+ \frac{\bm Z^{(1)\top}\bm e_n}{\sqrt n}
+ =\frac1{\sqrt n}\sum_iZ_i^{(1)}
+       (\nu_i^Q+\tfrac12Z_i^{(0)}\nu_i^\delta)
+       +\tfrac12\bm d^\top G_n^{(01)}+o_p(1),
+\end{equation}
+where $\nu_i^\delta=\delta_i-d_{S_i}$. The final term is generated by multiplying treatment signs from the observed and regenerated allocation sequences. Supplementary Appendix~C proves this conditional convergence using two conditionally independent regenerated sequences.
+
+\subsection{Variance difference and its sign}\label{sec:main-sign}
+\begin{corollary}\label{cor:main-variance-difference}
+Under Assumptions~\ref{ass:main-general-allocation} and \ref{ass:main-participants}, at $\Delta=b$,
+\begin{equation}\label{eq:gap-main}
+ v_{\rm R}(b)-v_{\rm S}(b)=\tfrac1{16}\bm d(b)^\top
+                                  (\Psi_D-\Pi)\bm d(b).
+\end{equation}
+Thus the limiting variances are equal exactly when $\bm d(b)^\top\Psi_D\bm d(b)=\bm d(b)^\top\Pi\bm d(b)$.
+\end{corollary}
+
+If $v_{\rm S}(b),v_{\rm R}(b)>0$, an ideal upper-tail reference test with nominal level $0<\alpha<1/2$ has rejection probability at the null value tending to
+\begin{equation}\label{eq:size-distortion-main}
+ 1-\Phi\{z_{1-\alpha}\sqrt{v_{\rm R}(b)/v_{\rm S}(b)}\}.
+\end{equation}
+It equals $\alpha$ when the two limiting variances are equal, is conservative when $v_{\rm R}>v_{\rm S}$ and is anti-conservative when $v_{\rm R}<v_{\rm S}$. The equality holds in particular when $d_s(b)=0$ for every stratum, including the sharp null $Y_i(1)-Y_i(0)=b$ whenever that individual-level hypothesis is compatible with the outcome scale. For an absolute-value two-sided test, replace $z_{1-\alpha}$ by $z_{1-\alpha/2}$ and multiply the upper-tail probability by two.
+
+The extra covariance has a direct finite-sample expression. Let $\mathcal C_n=\E(\bm Z\bm Z^\top\mid S_1,\ldots,S_n)$ for one allocation sequence. Label symmetry gives sign means zero and variances one. Thus $(\mathcal C_n)_{ij}$ is the correlation between participants $i$ and $j$ within this sequence, conditional on the profiles, for either treatment signs or indicators. Conditional independence of two repetitions gives
+\begin{equation}\label{eq:main-square-covariance}
+ \Var(G_n^{(01)}\mid S_1,\ldots,S_n)
+       =n^{-1}H^\top(\mathcal C_n\circ\mathcal C_n)H,
+\end{equation}
+where $\circ$ denotes entrywise multiplication. The ordinary imbalance covariance uses $\mathcal C_n$ in place of its entrywise square. This distinction explains why the usual imbalance covariance alone does not in general determine the additional covariance. Although the entrywise square is positive semidefinite, subtracting its diagonal need not preserve that property.
+
+At $\Delta=b$, the effect vector obeys $\bm\pi^\top\bm d(b)=0$. For $J\ge2$, let $B_\pi$ have orthonormal columns spanning the orthogonal complement of $\sqrt{\bm\pi}=(\sqrt{\pi_s})_{s=1}^J$, and put
+\begin{equation}\label{eq:main-restricted-spectrum}
+ \mathcal R_\pi=B_\pi^\top\Pi^{-1/2}\Psi_D\Pi^{-1/2}B_\pi.
+\end{equation}
+\begin{proposition}\label{prop:main-sign}
+Under Assumptions~\ref{ass:main-general-allocation} and \ref{ass:main-participants}, for $\bm d(b)\ne0$ at $\Delta=b$,
+\[
+ \lambda_{\min}(\mathcal R_\pi)
+ \le \frac{\bm d(b)^\top\Psi_D\bm d(b)}{\bm d(b)^\top\Pi\bm d(b)}
+ \le \lambda_{\max}(\mathcal R_\pi).
+\]
+The variance difference is nonnegative for every mean-zero effect vector if and only if $\lambda_{\min}(\mathcal R_\pi)\ge1$. If this eigenvalue is below one, a continuous-outcome law satisfying the participant assumptions has $v_{\rm R}(b)<v_{\rm S}(b)$ and an asymptotically anti-conservative reference test. The variances agree for every such vector if and only if $\mathcal R_\pi=I_{J-1}$.
+\end{proposition}
+For $\bm d(b)\ne0$, write $\rho=\bm d(b)^\top\Psi_D\bm d(b)/\{\bm d(b)^\top\Pi\bm d(b)\}$. Then
+\[
+ \frac{v_{\rm R}}{v_{\rm S}}=1+w(\rho-1),\qquad
+ w=\frac{\bm d(b)^\top\Pi\bm d(b)}{16v_{\rm S}}\in[0,1].
+\]
+The bound on $w$ follows from the nonnegative variance components in (\ref{eq:vS-main}). Thus a directional covariance ratio is not generally the variance ratio entering (\ref{eq:size-distortion-main}). Supplementary Appendix~C.3 proves the identity and proposition. The following consequence covers allocation conducted separately within strata.
+
+\begin{corollary}\label{cor:main-stratified-sign}
+Suppose the allocation rule is label symmetric and, conditional on the profile sequence, the assignment vectors in distinct strata are independent. For every $n$,
+\[
+ \Var(G_n^{(01)}\mid S_1,\ldots,S_n)-N/n\succeq0.
+\]
+If Assumptions~\ref{ass:main-general-allocation} and \ref{ass:main-participants} also hold, then $\Psi_D\succeq\Pi$ and $v_{\rm R}(b)\ge v_{\rm S}(b)$ at $\Delta=b$. When both variances are positive, the ideal upper-tail reference test with $0<\alpha<1/2$, and the absolute-value two-sided test, have limiting null rejection probabilities no greater than $\alpha$.
+\end{corollary}
+Between-stratum covariances vanish under this condition. The remaining off-diagonal contributions to the quadratic form are $v_s^2(\mathcal C_n)_{ij}^2\ge0$ within each stratum; the full proof is in Supplementary Appendix~C.3. The covariance inequality holds for each finite $n$, whereas the conclusion about rejection probability uses the limiting distributions. Supplementary Appendix~H verifies the joint allocation condition for independent assignments, fixed stratified blocks and stratified biased coins, and gives a sequential example with between-stratum dependence and a negative variance difference. Section~\ref{sec:min-sign} shows that the finite-sample inequality has no analogue for minimisation.
+
+For local alternatives $\Delta_n=b+h/\sqrt n$ with fixed $h\in\mathbb R$, retain Assumption~\ref{ass:main-general-allocation} and, for the approximations, Assumption~\ref{ass:main-calibration}. Impose the participant conditions in Supplementary Appendix~B.2, $v_{\rm S}(b),v_{\rm R}(b)>0$, a fixed allocation law, and, for SIGA-R, $\widehat{\bm d}_n(b)\to_p\bm d(b)$ for the limiting null law. The reference test and SIGA-R then have upper-tail local power
+\begin{equation}\label{eq:local-power-main}
+ 1-\Phi\left\{\frac{z_{1-\alpha}\sqrt{v_{\rm R}}-h/4}
+                        {\sqrt{v_{\rm S}}}\right\}.
+\end{equation}
+Replacing $v_{\rm R}$ in the critical value by $v_{\rm S}$ gives SIGA-S. Supplementary Appendices B and C give the full weak-null and intersection--union arguments.
+
+\subsection{A variance-corrected reference test}\label{sec:corrected}
+The observed and regenerated statistics can have different first-order scales. Let $\widehat\lambda_n(b)=[\widehat V_{{\rm R},n}(b)/\widehat V_{{\rm S},n}\{\bm r(b)\}]^{1/2}$. The corrected two-sided Monte Carlo $p$-value used in the additional simulations is
+\begin{equation}\label{eq:crt-p}
+ \widehat p_{\rm CRT}=\frac{1+\sum_{j=1}^B
+ \mathbf 1\{|T^*_{n,j}|\ge\widehat\lambda_n(b)|T_n|
+                  \ \text{or}\ |T^*_{n,j}|=|T_n|\}}{B+1}.
+\end{equation}
+One-sided versions compare $T^*_{n,j}\ge\widehat\lambda_n(b)T_n$ or $T^*_{n,j}\le\widehat\lambda_n(b)T_n$ and also count ties $T^*_{n,j}=T_n$. Non-inferiority and equivalence use these one-sided versions at their respective null values. The extra tie clause retains original-scale ties as exceedances. Apart from this clause, the comparison places the observed statistic on the scale $T_n/\widehat V_{{\rm S},n}^{1/2}$ and each regenerated statistic on $T^*_{n,j}/\widehat V_{{\rm R},n}^{1/2}$. The score and allocation mechanism are unchanged. Conditional convergence to a continuous distribution makes the tie clause asymptotically negligible, but it can matter for a discrete score in a finite trial.
+
+\begin{theorem}\label{thm:crt}
+Under Assumptions~\ref{ass:main-general-allocation}, \ref{ass:main-participants} and \ref{ass:main-calibration}, at $\Delta=b$ with $v_{\rm S}(b),v_{\rm R}(b)>0$, $\widehat{\bm d}(b)\to_p\bm d(b)$ and $B=B_n\to\infty$, the one- and two-sided versions of $\widehat p_{\rm CRT}$ converge in distribution to the uniform law on $(0,1)$; in particular $\Pbb(\widehat p_{\rm CRT}\le\alpha)\to\alpha$ for every $\alpha\in(0,1)$. Under the local alternatives of Section~\ref{sec:main-sign}, with $\widehat{\bm d}_n(b)\to_p\bm d(b)$, the upper-tail rejection probability converges to $1-\Phi\{z_{1-\alpha}-h/(4\sqrt{v_{\rm S}(b)})\}$, the limit for SIGA-S. Under the sharp null $Y_i(1)-Y_i(0)=b$ with the estimator of Supplementary Appendix~C.2, $\widehat\lambda_n(b)^2=1+O_p(n^{-1})$.
+\end{theorem}
+The proof is in Supplementary Appendix~C.4. Under the minimisation conditions, the same theorem applies when $\widehat V_{{\rm S},n}$ and $\widehat V_{{\rm R},n}$ are replaced throughout by their reconstructed versions. The construction is related to Gaussian prepivoting \citep{CohenFogarty2022}, but it uses different scales for the observed and regenerated statistics. Finite-sample exactness of the corrected test, and an $O(n^{-1})$ bound on its size error, do not follow from the stated rate for $\widehat\lambda_n$. SIGA-S gives its first-order null and local-power approximation; SIGA-R approximates the uncorrected reference test. Supplementary Appendix~J examines the finite-sample differences.
+
+\section{Verification for the Pocock--Simon range method}\label{sec:minimization}
+\subsection{Allocation rule and a finite sufficient condition}
+There are $F$ binary minimisation factors. Immediately before participant $i$ is assigned, let $D_{i-1,0}$ be the overall treatment imbalance and $D_{i-1,f\ell}$ the imbalance at level $\ell$ of factor $f$. For an incoming profile with levels $x_f(S_i)$, the range method compares
+\begin{equation}\label{eq:min-score}
+ \mathcal I_i(z)=|D_{i-1,0}+z|+
+  \sum_{f=1}^F|D_{i-1,f,x_f(S_i)}+z|,\qquad z\in\{-1,1\}.
+\end{equation}
+The sign with the smaller sum is selected with probability $p_{\rm bc}\in(1/2,1)$ and a tie is resolved with probability $1/2$. All components, including overall balance, have weight one. This is the stochastic range method described for Pocock--Simon minimisation; it is distinct from the variance method, which uses squared imbalances \citep{CoartEtAl2023}.
+
+Let $U_i\in\{-1,1\}^F$ denote the sign-coded version of $S_i$, and let $U$ have this common profile distribution. Using the same profile ordering in $\mathsf L$ and $\Pi$, set
+\[
+ a(u)=(1,u_1,\ldots,u_F)^\top,\qquad
+ \mathsf L=[a(u):u\in\{-1,1\}^F],\qquad K=\mathsf L\Pi \mathsf L^\top.
+\]
+For the contrast state $X_n=\sum_{i\le n}Z_i a(U_i)$, define
+\begin{equation}\label{eq:alloc-H}
+ f_x(u)=\sg\{\sg(x_0)+\sum_f\sg(x_0+u_fx_f)\},\qquad
+ \mathcal D_\pi(x)=x^\top K^{-1}\E_\pi\{a(U)f_x(U)\}.
+\end{equation}
+Here $\sg(t)$ equals $-1$, $0$ or $1$ according as $t<0$, $t=0$ or $t>0$. The first coordinate of $X_n$ is the overall imbalance, and the imbalance at the active level of factor $f$ is $(X_{n0}+u_fX_{nf})/2$. Thus this is a reparameterisation of the original allocation state.
+
+For $c\in\{-2,-1,0,1,2\}^F$, let
+\[
+ \xi(c)=K^{-1}\E_\pi\left[a(U)\sg\{1+\sum_f\sg(1+U_fc_f)\}\right],
+\]
+\[
+ L(c)=\xi_0(c)+\sum_{c_f\ne0}\sg(c_f)\xi_f(c)-\sum_{c_f=0}|\xi_f(c)|,
+\]
+and, for nonzero $e\in\{-1,0,1\}^F$, let $\zeta(e)=K^{-1}\E_\pi[a(U)\sg(\sum_fe_fU_f)]$. Write $\mathcal P_F$ for the full-support distributions satisfying the finite inequalities
+\begin{equation}\label{eq:main-finite-condition}
+ \min_c L(c)>0,\qquad
+ \sg(c_f)\xi_f(c)\ge0\ (|c_f|=2),\qquad
+ \min_{e,f:e_f\ne0}e_f\zeta_f(e)>0.
+\end{equation}
+These finite sufficient inequalities can be evaluated by sums over the $2^F$ profiles. Supplementary Appendix~A gives their derivation and exact checks for the study distributions.
+
+\Needspace{5\baselineskip}
+\begin{assumption}\label{ass:main-minimization}
+The number of binary factors and $p_{\rm bc}\in(1/2,1)$ are fixed. The profiles are independent and identically distributed with fixed positive joint probabilities. Each sequence starts from balance and follows (\ref{eq:min-score}) using fresh independent random numbers, independent of the profiles. Either $F=2$ or $\pi\in\mathcal P_F$.
+\end{assumption}
+For two factors, every positive joint distribution satisfies the required drift bounds, without an independence assumption. For any larger fixed number of binary factors, the finite inequalities apply directly to the specified joint probabilities. For five factors, Supplementary Appendix A verifies (\ref{eq:main-finite-condition}) by exact arithmetic on rectangular sets of factor prevalences containing both distributions used in the numerical studies. Continuity then gives open neighbourhoods in the simplex of positive joint distributions, including correlated factors.
+
+The role of the finite condition is to control the drift on every region where the signs in $f_x$ are constant. On each such region, $\mathcal D_\pi(x)$ is linear in $x$, but its coefficients depend on the full joint profile distribution through $K^{-1}$. The two-factor proof reduces these coefficients to an identity involving the four profile probabilities. For more factors, we check the required inequalities region by region rather than impose independence or replace the range criterion. Failure of this sufficient condition does not establish failure of the allocation limit.
+
+\Needspace{11\baselineskip}
+\subsection{Recurrence and joint central limit theorem}
+\begin{theorem}\label{thm:main-allocation}
+Under Assumption~\ref{ass:main-minimization}, the state process for any fixed number of independent allocation sequences generated conditional on the same profile sequence is positive recurrent, and the return time to simultaneous balance has moments of every finite order. Assumption~\ref{ass:main-general-allocation} holds. In addition,
+\begin{equation}\label{eq:main-rank}
+ \ker\Sigma_D=\operatorname{range}(\mathsf L^\top),\qquad
+ \operatorname{rank}(\Sigma_D)=2^F-(F+1),\qquad \Psi_D\succ0.
+\end{equation}
+\end{theorem}
+
+The proof uses the quadratic Lyapunov function $\mathcal V_0(x)=x^\top K^{-1}x$. Writing $P$ for the transition kernel of $X_n$ and $\eta=2p_{\rm bc}-1$, its exact one-step drift is $P\mathcal V_0(x)-\mathcal V_0(x)=F+1-2\eta \mathcal D_\pi(x)$. For every positive two-factor distribution, $\mathcal D_\pi(x)\ge|x_0|$ and $\mathcal D_\pi(0,x')\ge\|x'\|_1/2$. The finite inequalities in (\ref{eq:main-finite-condition}) give corresponding bounds in higher dimensions. Multistep polynomial drift then yields all finite return-time moments; regeneration at simultaneous balance gives the joint central limit theorem and the moment convergence required in Assumption~\ref{ass:main-general-allocation}. Supplementary Appendix A provides the complete proof and the exact finite checks.
+
+The covariance $\Sigma_D$ vanishes on additive functions of the binary factors, whereas $\Psi_D$ is positive definite. For $F\ge2$, the rank in (\ref{eq:main-rank}) is positive and $\Sigma_D\bm1=0$. A diagonal positive-semidefinite matrix with this property would be zero, so $\Sigma_D$ cannot be diagonal. Thus the allocation limit here is not an instance of the diagonal-covariance condition in \citet[Assumption~2.2]{BugniCanayShaikh2018}. The restricted quadratic form in Proposition~\ref{prop:main-sign} separately determines comparison of $\Psi_D$ with $\Pi$.
+
+\subsection{The sign of the variance difference under minimisation}\label{sec:min-sign}
+The finite-sample inequality for allocation conducted independently within strata does not extend to every minimisation rule. Supplementary Appendix~I gives proofs and calculations. Write $\widetilde G_n=\sum_{i\le n}h(S_i)\xi_i$, where $\xi_i=Z_i^{(1)}Z_i^{(2)}$, and let $\mathcal H_{i-1}$ contain the two allocation histories. If $\E(\xi_i\mid\mathcal H_{i-1},S_i)$ does not depend on $S_i$, then $v_{S_i}\xi_i$ is a martingale difference for every $\bm\pi^\top v=0$ and $\Var(v^\top\widetilde G_n)=n v^\top\Pi v$. Deterministic one-factor range minimisation with fair tie-breaking satisfies this condition: two repetitions agree up to a constant sign between simultaneous returns to balance. Its limiting sampling and reference variances coincide although assignments in different strata are dependent.
+
+Under uniform binary profiles, the finite-sample product covariance is diagonal in the factor-interaction basis. For three participants, the three-factor interaction direction satisfies
+\[
+ \frac{v^\top\Var(\widetilde G_3)v}{3v^\top\Pi v}
+       =1-\frac16p_{\rm bc}(1-p_{\rm bc})(2p_{\rm bc}-1)^2<1.
+\]
+This proves failure of a universal finite-sample covariance inequality, not asymptotic anti-conservativeness of minimisation. Appendix~I gives the general three-participant formula, the deterministic one-factor covariance and longer-sequence recursion with truncation-error bounds. The available finite-sample calculations and extrapolations do not determine the limiting sign in all directions.
+
+\section{Design-stage evaluation and numerical results}\label{sec:algorithm}
+For each candidate sample size, estimate $\widehat\Gamma_n$, $\widehat\Psi_n$ and, for the reconstruction, $\widehat\Xi_n$ from the allocation rule alone. Reuse these estimates across outcome trials and tested effects. The rejection proportion estimates power; uncertainty should be assessed near a proposed sample-size threshold. If the reference randomisation test is the intended analysis, its weak-null size must also be evaluated. Avoiding the inner loop reduces $B_{\rm out}B$ allocation simulations to order $B_0+B_{\rm out}$ for each design and sample size. The following high-replication studies concern the original covariance; the paired evaluation separately assesses the reconstruction.
+
+\subsection{Simulation design and original approximations}\label{sec:simulation}\label{sec:simulation-results}
+Two independent experiments each used 56 configurations, combining continuous and binary outcomes, four design--sample-size combinations and seven null or power settings for superiority, non-inferiority and equivalence. The designs used two factors with total $n=200$ or $1000$, or five factors with $n=400$ or $2000$, independent prevalences $(.50,.40)$ or $(.50,.40,.30,.20,.10)$, and $p_{\rm bc}=.80$. Both unadjusted and baseline-adjusted scores were evaluated. Continuous effects were homogeneous; the binary logistic model gave heterogeneous risk differences. Both baseline models omitted a prognostic interaction. Appendix~E gives models and fixed alternatives. Each experiment used 100,000 outcome trials and 100,000 allocation simulations. The reference test used 4,999 regenerated sequences per trial, shared across analyses. Model-known effect deviations isolated reference-distribution approximation from effect estimation; they are not an implementable estimator for unknown effects. Unadjusted binary superiority used the continuity correction of Appendix~D; other analyses used Gaussian tails.
+
+The largest absolute differences from the reference test were approximately 0.2 percentage points at null values and 0.4 for power. Reference estimates differ between the two experiments because their outer trials were independent. Mean variance ratios were 1.000--1.042. A 12-scenario sensitivity study in Appendix~G gave reference-to-sampling variance ratios of 1.193--1.194 in strongly heterogeneous continuous scenarios: SIGA-R differed from the reference by at most 0.04 points, whereas the largest SIGA-S difference was 0.90. The corresponding binary ratios were 1.113--1.115, with largest SIGA-R difference 0.24 points. Appendix~F reports the single-core benchmarks; these concern the original construction, not the reconstruction.
+
+Appendix~J retains additional heterogeneous-effect null studies at $p_{\rm bc}=.80$ and $.95$, including data-based corrections and discrete-tail comparisons. They used the original covariance and ordinary Gaussian tails, without continuity correction. The stronger continuous configuration also reduced residual variability and increased stratum-effect variation, so it did not isolate the coin probability. These studies motivated separate evaluation of the covariance reconstruction and the treatment of ties.
+
+% BEGIN GENERATED VALIDATION TEXT
+\subsection{Paired evaluation of the covariance reconstruction}
+The paired evaluation comprised 224 broad scenarios, 40 factorial scenarios and 16 sharp-null controls, each with 10,000 outcome trials, 999 reference assignments per trial and 20,000 allocation replicates per design. The broad family crossed four design--sample-size combinations, two outcomes, two coin settings, two fixed effect directions and seven null or power roles. The factorial family separated coin probability, residual variation and effect heterogeneity at $F=5,n=400$; controls had no effect. Both scores and constructions used identical trials, reference assignments and allocation estimates. All primary analyses estimated stratum effects from observed arm means. The formula and scenarios were fixed before the pilot; increasing replication retained its first 2,000 trials and added 8,000 without changing methods or settings. Appendix~K gives the complete design and Monte Carlo comparisons.
+
+The reconstruction reduced the absolute relative discrepancy in mean conditional reference variance for the unadjusted factorial settings (Table~\ref{tab:pilot-covariance}). This compares the mean estimated variance with the mean empirical reference variance, not means of trial-level ratios. In the previously identified five-factor, $n=400$, strong-setting continuous superiority scenario, original SIGA-R rejected 3.52\%, reconstructed SIGA-R 4.18\% and RT 4.21\%. Paired differences from RT were -0.69 (Monte Carlo standard error 0.10) and -0.03 (0.09) percentage points. The data-based corrected reference tests rejected 4.80\% and 4.83\%, respectively. These results distinguish better approximation of the reference distribution from correction of its weak-null size.
+
+Improvement was not uniform: some alternative-setting tail discrepancies increased despite improved mean variance estimation. Original and reconstructed CRT decisions were identical in the 32 control scenario--score combinations, while changes in normal SIGA-S rates did not exceed 0.12 points. For unadjusted binary superiority, lattice tails improved absolute rejection-rate agreement in 38 of 40 settings relative to ordinary Gaussian tails, but did not reproduce every discrete reference distribution. All cases are retained in the computational record. At a true rate of 5\%, 10,000 trials give Monte Carlo standard error about 0.22 points. The reported errors condition on the common allocation estimates; no variance floor or rank fallback was recorded.
+
+% END GENERATED VALIDATION TEXT
+
+\section{Trial-based illustration}\label{sec:case-study}
+We used published planning characteristics of SWIFT DIRECT, a non-inferiority trial of direct thrombectomy versus intravenous alteplase followed by thrombectomy \citep{FischerEtAl2022Protocol,FischerEtAl2022Trial}. The planning response probability was .622 in both groups, with total sample size 404, risk-difference margin .12 and one-sided level .05. The endpoint was functional independence at 90 days. The illustration uses published planning characteristics, not participant data.
+
+The five dichotomised factors were stroke severity, age, occlusion location, tandem-lesion status and baseline imaging score. The working independent prevalences were approximately $(.466,.592,.287,.154,.300)$, reconstructed from aggregate reports. Supplementary Appendix A verifies the finite inequalities in (\ref{eq:main-finite-condition}) on a prevalence rectangle containing the unrounded values used in the simulation code. A logistic outcome model with prognostic main effects and zero treatment coefficient gave identical conditional response probabilities. The completed trial used deterministic minimisation; the illustration instead used the stochastic range method in (\ref{eq:min-score}) with $p_{\rm bc}=.80$. Complete reconstruction assumptions are in Supplementary Appendix E.
+
+All methods used 100,000 common outer trials. Estimated power was 81.3--81.5\% across the reference test and the two approximations, with mean variance ratio 1.003. Including the one-time covariance estimation, the single-core time for 100,000 trials was about one minute for either approximation and 406 minutes for the reference randomisation test. The correction is small here; Supplementary Appendix~G varies the stratum-specific effect deviations explicitly.
+
+\section{Discussion}\label{sec:discussion}
+The first-order difference between sampling and conditional reference variances arises from treatment-effect deviations retained in an observed score. It depends on $\Psi_D-\Pi$, where squared conditional assignment correlations determine $\Psi_D$. The usual imbalance covariance is insufficient: stratified blocks of sizes two and four both have $\Sigma_D=0$ but give $\Psi_D=2\Pi$ and $4\Pi/3$. Allocation conducted independently within strata has a nonnegative limiting difference; cross-stratum dependence alone does not determine its sign. The range-method joint limit connects this inference argument to an allocation rule whose decisions can differ from squared-imbalance rules.
+
+Separating the two variances gives asymptotically valid rescaling of the reference test and reusable Gaussian approximations for trial planning. The original-scale tie convention remains part of the finite-sample corrected test; the rescaling does not generally preserve sharp-null exactness. SIGA-S addresses average-effect inference, whereas SIGA-R approximates the specified uncorrected test. Other approaches include robust adjusted estimators, studentised randomisation tests and Gaussian prepivoting \citep{YeEtAl2023,WuDing2021,ZhaoDing2021,CohenFogarty2022}. Regulatory guidance motivates considering allocation and analysis jointly, rather than requiring the particular score studied here \citep{FDA2019Adaptive,FDA2023Covariates,NMPA2022Randomization}.
+
+The reconstruction uses known balance directions and simulated finite-sample moments, without outcome-based tuning. Its invariance to invertible recoding of the contrasts and first-order equivalence are algebraic and asymptotic properties; neither guarantees finite-sample dominance. The extended paired evaluation supports reduced variance overestimation in the unadjusted five-factor settings that motivated the change, with much smaller changes after baseline adjustment. Some reference-tail differences nevertheless increased, and discrete scores remained sensitive to the tail approximation. Preserving imbalance moments does not recover the entire conditional assignment covariance: a finite-sample cross-covariance block is set to zero as a working construction. Monte Carlo uncertainty and shared covariance-estimation error limit claims about small differences in size or power.
+
+Reusing allocation covariances substantially reduced computation in the original trial-based illustration. That practical advantage is separate from the evidence for the new reconstruction, whose computation time was not separately benchmarked. For a fixed outcome model, accurate design-stage rejection probabilities remain useful even when they reveal that a proposed uncorrected test is conservative. Such a finding informs the choice of analysis before the trial rather than establishing that the approximation should itself target nominal size.
+
+The theory is first-order and pointwise. The verified range-method class has fixed binary factors, equal overall and marginal weights, positive profile probabilities satisfying the stated conditions and $p_{\rm bc}\in(1/2,1)$. Other allocation rules require verification of the joint limit; multilevel marginal minimisation, growing-dimensional profiles and censored outcomes are outside the present results, and rerandomisation may require non-Gaussian limits \citep{LiDing2020,WangLi2026}. Absolute asymptotic $p$-value approximation does not supply a relative tail-error bound or uniform finite-sample size guarantee. The simulation results complement the theoretical argument within these limits.
+
+\section*{Data availability}
+No individual participant data were analysed. Original simulation code is available in GitHub release \texttt{v1.0.0} at \CodeRepository\ \citep{KojimaSIGA2026}. The reconstruction code, saved 10,000-trial plans, extension records, complete aggregates and table-reproduction scripts accompany this revision for addition to that repository; they are not in the earlier release. The 2,000-trial pilot is retained in the extended runs, not reported as independent evidence. Appendix~J identifies the separate provenance of earlier null-study summaries. An earlier manuscript is available as an arXiv preprint \citep{KojimaPreprint2026}.
+
+\section*{Acknowledgements and funding}
+This work was supported by the Japan Society for the Promotion of Science KAKENHI (Grant Number JP26K21185). OpenAI ChatGPT was used to assist with drafting and revising the text, with checking derivations and with preparing code. The author is responsible for the mathematical statements, computations and final text.
+
+\section*{Conflict of interest}
+The author declares no competing interests.
+
+\section*{Supplementary material}
+Supplementary Appendices A--G provide the minimisation allocation-process and inference proofs, finite sufficient conditions, simulation models, covariance diagnostics, independent direction checks and numerical tables. Appendix~H treats independent assignments, fixed-size stratified permuted blocks, stratified biased coins and a sequential counterexample. Appendix~I proves the allocation examples summarised in Section~\ref{sec:min-sign} and describes the deterministic computations. Appendix~J gives the earlier heterogeneous-effect null studies. Appendix~K describes the 10,000-trial paired evaluation and its Monte Carlo uncertainty. Machine-readable scenario results and verification code accompany the repository update.
+
+\bibliographystyle{apalike}
+\bibliography{main}
+\clearpage
+% BEGIN GENERATED VALIDATION TABLE
+\begin{table}[!htbp]
+\centering
+\caption{Absolute relative discrepancies in mean conditional reference variance. Entries are percentages; each scenario used 10,000 outcome trials.}
+\label{tab:pilot-covariance}
+\begin{threeparttable}
+\small
+\begin{tabular}{@{}lrcrrrrr@{}}
+\toprule
+Family & $F$ & Score & Configurations & \multicolumn{2}{c}{Median} & \multicolumn{2}{c}{Maximum}\\
+ & & & & Original & Reconstructed & Original & Reconstructed\\
+\midrule
+Factorial & 5 & U & 40 & 1.67 & 0.47 & 8.63 & 1.78\\
+Factorial & 5 & A & 40 & 0.43 & 0.49 & 1.87 & 1.80\\
+Broad & 2 & U & 160 & 0.30 & 0.25 & 1.78 & 1.72\\
+Broad & 2 & A & 160 & 0.25 & 0.25 & 1.72 & 1.72\\
+Broad & 5 & U & 160 & 0.27 & 0.17 & 7.44 & 3.72\\
+Broad & 5 & A & 160 & 0.13 & 0.17 & 3.86 & 3.81\\
+Controls & 2 & U & 8 & 0.23 & 0.20 & 1.77 & 1.73\\
+Controls & 2 & A & 8 & 0.19 & 0.19 & 1.73 & 1.73\\
+Controls & 5 & U & 8 & 0.32 & 0.22 & 1.35 & 0.64\\
+Controls & 5 & A & 8 & 0.18 & 0.22 & 0.56 & 0.65\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]\small
+\item[] U and A denote unadjusted and baseline-adjusted scores. A configuration is a scenario--tested-boundary combination, with scores tabulated separately. The discrepancy is $100|\overline{\widehat V_R}/\overline{V^*}-1|$, where $V^*$ is the variance of 999 regenerated statistics within a trial and bars average over 10,000 trials. Medians and maxima summarise configurations, not pooled variance estimates. Both constructions use estimated stratum effects and common allocation-covariance estimates. The first 2,000 trials per scenario are retained from the pilot.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+% END GENERATED VALIDATION TABLE
+\end{document}

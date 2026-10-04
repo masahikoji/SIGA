@@ -1,0 +1,24 @@
+[
+  {
+    "case": "main_correlated",
+    "all_coefficients_and_inequalities_agree": true,
+    "explicit_chamber_vertices_checked": 7776,
+    "normal_equations_verified": true,
+    "structural_zero_rays_verified": true,
+    "c0": "1",
+    "c1": "165433/773750",
+    "minimum_ray": "0",
+    "certificate_pass": true
+  },
+  {
+    "case": "trial_rounded_correlated",
+    "all_coefficients_and_inequalities_agree": true,
+    "explicit_chamber_vertices_checked": 7776,
+    "normal_equations_verified": true,
+    "structural_zero_rays_verified": true,
+    "c0": "1",
+    "c1": "1911843769570152559/7556024433125000000",
+    "minimum_ray": "0",
+    "certificate_pass": true
+  }
+]

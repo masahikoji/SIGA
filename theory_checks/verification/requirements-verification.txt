@@ -1,0 +1,2 @@
+# Only the independent general-law checker and correlated cross-check need this.
+sympy>=1.12

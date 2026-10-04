@@ -1,0 +1,30 @@
+{
+  "thread_count_invariance": true,
+  "whole_stream_absolute_rule_equivalence": true,
+  "stratified_covariance_exact_enumeration": {
+    "configurations": 1024,
+    "excess_matrix": [
+      [
+        "2/45",
+        "0"
+      ],
+      [
+        "0",
+        "148/6125"
+      ]
+    ]
+  },
+  "independent_summary_n400": {
+    "ratio": 1.0046180625980987,
+    "mcse": 0.0032586197909013096
+  },
+  "independent_summary_n2000": {
+    "ratio": 1.0049788165921099,
+    "mcse": 0.0031921808453268937
+  },
+  "independent_summary_control": {
+    "ratio": 0.9988049499072964,
+    "mcse": 0.003182648277401602
+  },
+  "passed": true
+}

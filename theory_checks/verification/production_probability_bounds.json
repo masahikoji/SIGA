@@ -1,0 +1,65 @@
+{
+  "method": "Exact rational alternating-series enclosures; 70-digit square-root bounds; verified normal-quantile bracket",
+  "source": "masahikoji/SIGA v1.0.0 production/swift_direct/simulation_swift_direct_siga_s_rt.R",
+  "normal_075_quantile_bracket": [
+    "67448975019/100000000000",
+    "3372448751/5000000000"
+  ],
+  "probabilities": [
+    {
+      "name": "NIHSS_gt17",
+      "exact_lower": "116561182303/250000000000",
+      "exact_upper": "93248945843/200000000000",
+      "display_lower": "0.466244729212",
+      "display_upper": "0.466244729215",
+      "certified_box": [
+        "0.465",
+        "0.467"
+      ]
+    },
+    {
+      "name": "Age_ge70",
+      "exact_lower": "118373422741/200000000000",
+      "exact_upper": "591867113709/1000000000000",
+      "display_lower": "0.591867113705",
+      "display_upper": "0.591867113709",
+      "certified_box": [
+        "0.591",
+        "0.593"
+      ]
+    },
+    {
+      "name": "ICA_related",
+      "exact_lower": "39/136",
+      "exact_upper": "39/136",
+      "display_lower": "0.286764705882",
+      "display_upper": "0.286764705882",
+      "certified_box": [
+        "0.286",
+        "0.288"
+      ]
+    },
+    {
+      "name": "Tandem",
+      "exact_lower": "21/136",
+      "exact_upper": "21/136",
+      "display_lower": "0.154411764706",
+      "display_upper": "0.154411764706",
+      "certified_box": [
+        "0.153",
+        "0.155"
+      ]
+    },
+    {
+      "name": "ASPECTS_4_7",
+      "exact_lower": "3/10",
+      "exact_upper": "3/10",
+      "display_lower": "0.300000000000",
+      "display_upper": "0.300000000000",
+      "certified_box": [
+        "0.299",
+        "0.301"
+      ]
+    }
+  ]
+}
