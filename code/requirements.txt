@@ -1,0 +1,5 @@
+# Fixed numerical environment; standard CPython 3.13, not free-threaded.
+numpy==2.3.5
+scipy==1.17.0
+numba==0.65.1
+llvmlite==0.47.0

@@ -1,0 +1,9 @@
+# Measured computational cost: current Apple M3 Ultra implementation
+
+Two standalone timing batches (`standalone_main/` and `standalone_additional/`) are complete and both are included in main Table 4 and Supplement H.4. The retained `timing_by_run.csv` and `timing_by_scenario.csv` record a **different** joint simulation stage measurement and must not be interpreted as per-method timings.
+
+**Standalone method protocol:** 16 selected superiority scenarios (8 per run), 2 scores, 7 implementations, 5 timing repetitions, >=100 pre-generated observations per timing block, >=1 second per block. RT and CRT each regenerate 4999 reference allocations per evaluation, while the two Gaussian approximation types do not. Common score preparation is separately timed. The benchmark uses one process and one numerical thread per run, not exclusively reserved CPU cores; the two benchmark jobs ran during partly overlapping times on the 28-logical-core Mac.
+
+**Reported 100,000-analysis minutes:** `100000 * (median per-method analysis time + median score preparation time) / 60 + one median full covariance-bundle calibration cost/60` for Gaussian and CRT, no covariance calibration for RT. The initial full 100000-triple three-sequence calibration bundle is conservatively charged also to SIGA-S. These are sequential **projections**, not directly observed 100k-trial elapsed durations, and exclude outcome generation, disk I/O, checkpoint saving and compilation.
+
+**Validation:** All 224 independent standalone outputs equal production p-values. Each input retains `source_plan.json`, `scope.json`, `STATUS.json` and full repetitions to reproduce all computations. No operating-characteristic results or theory are changed. `combined_benchmark_computed.csv` and `revision/benchmark_integration_checks.json` give independently regenerated summaries.

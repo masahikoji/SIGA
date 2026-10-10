@@ -1,0 +1,92 @@
+[
+  {
+    "path": "data/additional/README.txt",
+    "sha256": "a140f3efc1add1736502aa3ccb1718343fdaad9be002d0a13f055d220b220246",
+    "bytes": 759
+  },
+  {
+    "path": "data/additional/STATUS.json",
+    "sha256": "87680876bea9bbbe966118e5f25ce3c902f24ea1a98248c479a54ffd6c7c262a",
+    "bytes": 156
+  },
+  {
+    "path": "data/additional/coverage.csv",
+    "sha256": "17cb971d8f2a550c642d7a8534dc41ee57ee628869cd68fc48c02b16f5642036",
+    "bytes": 894
+  },
+  {
+    "path": "data/additional/paired_comparisons.csv",
+    "sha256": "bb82bb32323c551beb9b9246759910652384a3adddfea7a586321e203f521f45",
+    "bytes": 139813
+  },
+  {
+    "path": "data/additional/power.csv",
+    "sha256": "db3711aab1a32c1478ba2c4da024fd603920eb5fd9fd81e8590673450a5dafe2",
+    "bytes": 29192
+  },
+  {
+    "path": "data/additional/primary_rejection_rates.csv",
+    "sha256": "4e44c74f403ed8771ae51e4c0031b6ac2e17bd4c41fcfdd198bcbc09e3f7f75c",
+    "bytes": 76928
+  },
+  {
+    "path": "data/additional/rejection_rates.csv",
+    "sha256": "2eee54f60aa66a1085327daf058b931b98ec6951368e30f5c966901493a46c75",
+    "bytes": 143449
+  },
+  {
+    "path": "data/additional/type1_error.csv",
+    "sha256": "393942f1220c80010d74b25f2e879b01c61496b2b2768d129067de516eabbf56",
+    "bytes": 47995
+  },
+  {
+    "path": "data/additional/variance_diagnostics.csv",
+    "sha256": "0e69d06412ac798dba32623f920d35914970133f6beada996b09158d1098c17b",
+    "bytes": 33752
+  },
+  {
+    "path": "data/primary/README.txt",
+    "sha256": "a140f3efc1add1736502aa3ccb1718343fdaad9be002d0a13f055d220b220246",
+    "bytes": 759
+  },
+  {
+    "path": "data/primary/STATUS.json",
+    "sha256": "5d6c79d4539087d11023b46494a3912ae093ca7e4698ed51a2934b81ac5ae8c4",
+    "bytes": 156
+  },
+  {
+    "path": "data/primary/coverage.csv",
+    "sha256": "a047730c001013d2c3ab67734490001abd3530da95db76ea3b02a11fa1e6723e",
+    "bytes": 1406
+  },
+  {
+    "path": "data/primary/paired_comparisons.csv",
+    "sha256": "d764aa596fce224079123681d0d7fe01e2871adb629f4ab231becf2b178b940b",
+    "bytes": 225563
+  },
+  {
+    "path": "data/primary/power.csv",
+    "sha256": "922c9eedc8e4e7b7a2690084cab5244799c48e25ed08e8bc02ad6d6ff745f2fd",
+    "bytes": 59514
+  },
+  {
+    "path": "data/primary/primary_rejection_rates.csv",
+    "sha256": "baa42e1510c422f05887ae6cdda208ac50cad35734da75c71d1e058004ff56ab",
+    "bytes": 123427
+  },
+  {
+    "path": "data/primary/rejection_rates.csv",
+    "sha256": "847a263ad30842d56d61cba2790b6d8736aa47eade8d5f1d634711b6b91d32fb",
+    "bytes": 230476
+  },
+  {
+    "path": "data/primary/type1_error.csv",
+    "sha256": "34d12fb61385ec99d7331c327a35b1368af6bf2682aea7d260b3d80137f82a68",
+    "bytes": 64172
+  },
+  {
+    "path": "data/primary/variance_diagnostics.csv",
+    "sha256": "42c1538c2c269d3a2cda43c61adc81e5b4b779104fc733d3aa175323b6186dc4",
+    "bytes": 52877
+  }
+]

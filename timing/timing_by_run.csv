@@ -1,0 +1,3 @@
+run,scenarios,trials_recorded,complete,construction_measured_worker_seconds,reference_measured_worker_seconds,tail_measured_worker_seconds,measured_worker_seconds_sum,reference_fraction_of_measured,distinct_calibration_settings,calibration_worker_seconds_sum
+main_d012_20261009,32,1760000,True,574.513313,45779.277259,719.325758,47073.11633,0.9725142677764955,2,3.323105
+additional_d012_20261009,20,1280000,True,409.121587,70868.634768,638.792851,71916.549206,0.9854287441619878,5,21.850137

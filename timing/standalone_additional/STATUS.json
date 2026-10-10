@@ -1,0 +1,9 @@
+{
+  "complete": true,
+  "kind": "benchmark_only",
+  "max_implementation_p_difference": 0.0,
+  "production_simulations_changed": false,
+  "scenarios": 8,
+  "source_plan_hash": "33425717ac0aeb17f7e9f3e0a788685e1fd94116f60c0f01e8953e28bb3a99d2",
+  "summary_rows": 112
+}

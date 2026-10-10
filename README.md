@@ -1,94 +1,49 @@
-# SIGA: sampling and conditional randomisation inference
+# SIGA current analysis: computational reproducibility package (10 October 2026)
 
-This working revision accompanies Masahiro Kojima's manuscript:
+This directory contains **code, fixed input plans, aggregate results and validation materials only** for the current evaluation of 32 primary plus 20 additional scenarios. It does **not** contain `main.tex`, `supplement.tex`, manuscript bibliography, PDF, or journal page-layout files. The manuscript is maintained separately for journal submission.
 
-> Squared assignment correlations and randomisation tests of weak null hypotheses under covariate-adaptive allocation.
+The current package is distinct from the historical `v1.0.0` release and older 280-scenario study. The previously published tag must remain unchanged. The current package is a dated snapshot, not yet an immutable release or a DOI deposit.
 
-The historical `v1.0.0` tag identifies the original paper version,
-*Fast Power Evaluation under Biased-Coin Minimization: Sampling and Randomization
-Calibration*. Preserve that tag and its original source/output snapshots.
-The current working version is `1.1.0-dev`; no new public release or DOI is implied.
+## Contents
 
-## Original studies
+- `code/`: Python/Numba simulation implementation, software requirements and code tests.
+- `plans/`: fixed scenario definitions, identifiers, seeds and numerical budgets.
+- `data/primary/`, `data/additional/`: aggregate outcomes, rejection counts and variance diagnostics (no participant data).
+- `timing/`: original method-specific benchmark repetitions, calibration records and computed summaries.
+- `audit/`: verifiers and table/plot recreation from archived aggregates, with frozen SHA-256 digests for the 11 archived table outputs.
+- `scripts/`: rerun-plan preparation, deterministic numerical checks and exact small-sample verification.
+- `review/`: additional pair-exporter utility used in the checks.
 
-`production/`, `data/production_results/raw/`, `reference_implementation/` and
-`scripts/06_verify_production_results.R` retain the original R workflows and
-aggregate checks. The two original full grids used independent outer trials,
-with common trials for methods within each grid. The old 100,000-trial results
-are not results for the later covariance reconstruction.
+## Fast checks (no outcome resimulation)
 
-## Revision contents
+From this directory, with the documented dependencies installed:
 
-- `validation/code/`: unchanged, observed-data-only paired evaluation code and R adapter.
-- `validation/results_10k/`: complete outputs for 280 scenarios, each with 10,000
-  trials (2,800,000 trials total), saved plans and extension records.
-- `validation/results/`: archived 2,000-trial pilots already included in the 10,000 totals.
-- `validation/report/`: checks and deterministic table reproduction.
-- `validation/manuscript_20261004/`: the matching manuscript sources.
-- `additional_null_study/`: earlier R3 source/results and finite-state programs.
-- `theory_checks/`: supplied finite-condition and allocation-direction checks.
-- `REPRODUCIBILITY_STATUS.md`: verified scope and remaining provenance limitations.
-
-## Statistical and theoretical scope
-
-The manuscript compares sampling and conditional randomisation variances under an
-explicit joint allocation condition. The additional covariance is determined by
-squared assignment correlations given the ordered profiles; the variance difference
-involves that covariance minus the diagonal matrix of profile probabilities.
-Average-effect inference, approximation of the original randomisation test and
-variance rescaling of that test are distinct objectives. The corrected test retains
-original-scale ties; finite-sample sharp-null exactness is not established.
-
-Joint allocation limits are verified for fixed-size stratified permuted blocks,
-stratified Efron biased coins, and stochastic equal-weight absolute-range
-Pocock--Simon minimisation including overall balance, for every positive joint law
-of two binary factors and more factors satisfying stated finite inequalities.
-This is not a result for every minimisation variant or every adaptive design.
-
-The covariance reconstruction retains separately simulated overall/marginal moments
-and has the same first-order target for verified balance directions. The 10,000-trial
-study supports reduced variance overestimation in the motivating unadjusted settings;
-not all variance or tail-probability comparisons improve. Complete comparisons are
-included, with paired Monte Carlo standard errors. No new timing claim is inferred.
-
-## Verification from the repository root
-
-Install the dependencies in `validation/code/requirements.txt`, then run:
-
-```bash
-python validation/report/reproduce_10k_report.py
-python validation/code/run.py test
+```sh
+python scripts/verify_submission.py
+python audit/rebuild_power_summary.py --write
+python code/run.py test
+python audit/plot_primary_null.py
 ```
 
-The first command checks/reproduces tables from supplied aggregates, not 2.8 million
-new outcome trials. The second checks software/algebra, not performance superiority.
-After applying and reviewing this overlay, refresh the root checksum manifest:
+The checks regenerate derived table fragments under `audit/regenerated_tables/` and a figure under `figures/` as **outputs**, not included manuscript sources. They do not rerun the approximately 3.04 million original outcome trials. Do not interpret them as independent verification of every result.
 
-```bash
-python scripts/refresh_manifest.py --write
-python scripts/refresh_manifest.py --check
+## Rerun the recorded simulations
+
+Install `code/requirements.txt` in a fresh environment (recorded runtime: Python 3.13.16 on macOS arm64, NumPy 2.3.5, SciPy 1.17.0, Numba 0.65.1, llvmlite 0.47.0). Then, for example:
+
+```sh
+python scripts/prepare_saved_plan.py --study primary --out "$HOME/SIGA_runs/reproduction_primary"
+python code/run.py calibrate --out "$HOME/SIGA_runs/reproduction_primary" --workers 2
+python code/run.py run --out "$HOME/SIGA_runs/reproduction_primary" --workers 8
+python code/run.py aggregate --out "$HOME/SIGA_runs/reproduction_primary"
 ```
 
-Original results can still be checked with:
+Use `--study additional` and a separate empty output directory for the other 20 scenarios. The saved plan is checked against its frozen hash and source signature. On another numerical environment use the explicit override documented by `prepare_saved_plan.py`; cross-platform bitwise identity is not guaranteed. Full trial-level checkpoints and calibration arrays are not distributed and must be regenerated.
 
-```bash
-Rscript scripts/06_verify_production_results.R
-```
+## Benchmarks and scope
 
-See `validation/README.md` for a fresh rerun using the exact saved 10,000-trial plan.
-Keep large active run directories outside cloud-synchronised folders.
+The timing results are projections from measured single-thread benchmark repetitions, not direct runs of 100,000 repeated analyses. Preprocessing and reuse costs are documented in `timing/`. Gaussian approximations avoid per-trial reference regeneration; CRT does not. The associated clinical illustration and historical studies in the root SIGA repository are separate from the current 52-scenario evaluation.
 
-## Provenance and publication
+## Archive and DOI
 
-The extension retains trial indices 0--1999 and adds 2000--9999 without changing
-methods, scenarios, master seed, inner draws or allocation estimates. This is an
-increase in Monte Carlo precision, not an independent confirmatory experiment.
-Actual plans and source signatures now reconcile the earlier pilot identifiers.
-Raw checkpoint files, actual calibration arrays and runtime logs were not supplied
-in this update; aggregate checks do not authenticate every originating execution.
-
-The older R3 strong-setting CSV is still explicitly reconstructed from rounded
-aggregates; the new 10,000-trial data do not restore that separate original output.
-The licence is unchanged. Finalise a new immutable release, archive it with a DOI,
-and update the manuscript's code citation before acceptance. Do not invent a
-release URL or move the existing v1.0.0 tag.
+After reviewing this package, publish a new, immutable GitHub release without changing `v1.0.0`, and archive it with Zenodo or another DOI-issuing archive. Insert the actual new release URL and DOI in the journal manuscript before acceptance. No new release or DOI is created by this ZIP.

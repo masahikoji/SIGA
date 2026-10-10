@@ -1,0 +1,1090 @@
+[
+  {
+    "role": "superiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "continuous",
+    "score": "unadjusted",
+    "method": "RT",
+    "source_indices": [
+      1,
+      5
+    ],
+    "rejections": [
+      8103,
+      7906
+    ],
+    "cell": "79.06--81.03"
+  },
+  {
+    "role": "superiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "continuous",
+    "score": "unadjusted",
+    "method": "refined_S_normal",
+    "source_indices": [
+      1,
+      5
+    ],
+    "rejections": [
+      8116,
+      7910
+    ],
+    "cell": "79.10--81.16"
+  },
+  {
+    "role": "superiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "continuous",
+    "score": "unadjusted",
+    "method": "refined_R_normal",
+    "source_indices": [
+      1,
+      5
+    ],
+    "rejections": [
+      8094,
+      7885
+    ],
+    "cell": "78.85--80.94"
+  },
+  {
+    "role": "superiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "continuous",
+    "score": "unadjusted",
+    "method": "refined_CRT_data",
+    "source_indices": [
+      1,
+      5
+    ],
+    "rejections": [
+      8131,
+      7935
+    ],
+    "cell": "79.35--81.31"
+  },
+  {
+    "role": "superiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "continuous",
+    "score": "adjusted",
+    "method": "RT",
+    "source_indices": [
+      1,
+      5
+    ],
+    "rejections": [
+      8194,
+      7911
+    ],
+    "cell": "79.11--81.94"
+  },
+  {
+    "role": "superiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "continuous",
+    "score": "adjusted",
+    "method": "refined_S_normal",
+    "source_indices": [
+      1,
+      5
+    ],
+    "rejections": [
+      8181,
+      7933
+    ],
+    "cell": "79.33--81.81"
+  },
+  {
+    "role": "superiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "continuous",
+    "score": "adjusted",
+    "method": "refined_R_normal",
+    "source_indices": [
+      1,
+      5
+    ],
+    "rejections": [
+      8152,
+      7902
+    ],
+    "cell": "79.02--81.52"
+  },
+  {
+    "role": "superiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "continuous",
+    "score": "adjusted",
+    "method": "refined_CRT_data",
+    "source_indices": [
+      1,
+      5
+    ],
+    "rejections": [
+      8222,
+      7944
+    ],
+    "cell": "79.44--82.22"
+  },
+  {
+    "role": "superiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "binary",
+    "score": "unadjusted",
+    "method": "RT",
+    "source_indices": [
+      9,
+      13
+    ],
+    "rejections": [
+      8810,
+      8589
+    ],
+    "cell": "85.89--88.10"
+  },
+  {
+    "role": "superiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "binary",
+    "score": "unadjusted",
+    "method": "refined_S_normal",
+    "source_indices": [
+      9,
+      13
+    ],
+    "rejections": [
+      8990,
+      8750
+    ],
+    "cell": "87.50--89.90"
+  },
+  {
+    "role": "superiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "binary",
+    "score": "unadjusted",
+    "method": "refined_R_normal",
+    "source_indices": [
+      9,
+      13
+    ],
+    "rejections": [
+      8974,
+      8731
+    ],
+    "cell": "87.31--89.74"
+  },
+  {
+    "role": "superiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "binary",
+    "score": "unadjusted",
+    "method": "refined_CRT_data",
+    "source_indices": [
+      9,
+      13
+    ],
+    "rejections": [
+      8810,
+      8589
+    ],
+    "cell": "85.89--88.10"
+  },
+  {
+    "role": "superiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "binary",
+    "score": "adjusted",
+    "method": "RT",
+    "source_indices": [
+      9,
+      13
+    ],
+    "rejections": [
+      8954,
+      8714
+    ],
+    "cell": "87.14--89.54"
+  },
+  {
+    "role": "superiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "binary",
+    "score": "adjusted",
+    "method": "refined_S_normal",
+    "source_indices": [
+      9,
+      13
+    ],
+    "rejections": [
+      9012,
+      8737
+    ],
+    "cell": "87.37--90.12"
+  },
+  {
+    "role": "superiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "binary",
+    "score": "adjusted",
+    "method": "refined_R_normal",
+    "source_indices": [
+      9,
+      13
+    ],
+    "rejections": [
+      9001,
+      8720
+    ],
+    "cell": "87.20--90.01"
+  },
+  {
+    "role": "superiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "binary",
+    "score": "adjusted",
+    "method": "refined_CRT_data",
+    "source_indices": [
+      9,
+      13
+    ],
+    "rejections": [
+      8971,
+      8733
+    ],
+    "cell": "87.33--89.71"
+  },
+  {
+    "role": "superiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "continuous",
+    "score": "unadjusted",
+    "method": "RT",
+    "source_indices": [
+      17,
+      21
+    ],
+    "rejections": [
+      8076,
+      7918
+    ],
+    "cell": "79.18--80.76"
+  },
+  {
+    "role": "superiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "continuous",
+    "score": "unadjusted",
+    "method": "refined_S_normal",
+    "source_indices": [
+      17,
+      21
+    ],
+    "rejections": [
+      8082,
+      7924
+    ],
+    "cell": "79.24--80.82"
+  },
+  {
+    "role": "superiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "continuous",
+    "score": "unadjusted",
+    "method": "refined_R_normal",
+    "source_indices": [
+      17,
+      21
+    ],
+    "rejections": [
+      8076,
+      7918
+    ],
+    "cell": "79.18--80.76"
+  },
+  {
+    "role": "superiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "continuous",
+    "score": "unadjusted",
+    "method": "refined_CRT_data",
+    "source_indices": [
+      17,
+      21
+    ],
+    "rejections": [
+      8081,
+      7921
+    ],
+    "cell": "79.21--80.81"
+  },
+  {
+    "role": "superiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "continuous",
+    "score": "adjusted",
+    "method": "RT",
+    "source_indices": [
+      17,
+      21
+    ],
+    "rejections": [
+      8117,
+      7953
+    ],
+    "cell": "79.53--81.17"
+  },
+  {
+    "role": "superiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "continuous",
+    "score": "adjusted",
+    "method": "refined_S_normal",
+    "source_indices": [
+      17,
+      21
+    ],
+    "rejections": [
+      8124,
+      7967
+    ],
+    "cell": "79.67--81.24"
+  },
+  {
+    "role": "superiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "continuous",
+    "score": "adjusted",
+    "method": "refined_R_normal",
+    "source_indices": [
+      17,
+      21
+    ],
+    "rejections": [
+      8114,
+      7964
+    ],
+    "cell": "79.64--81.14"
+  },
+  {
+    "role": "superiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "continuous",
+    "score": "adjusted",
+    "method": "refined_CRT_data",
+    "source_indices": [
+      17,
+      21
+    ],
+    "rejections": [
+      8131,
+      7956
+    ],
+    "cell": "79.56--81.31"
+  },
+  {
+    "role": "superiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "binary",
+    "score": "unadjusted",
+    "method": "RT",
+    "source_indices": [
+      25,
+      29
+    ],
+    "rejections": [
+      8605,
+      8465
+    ],
+    "cell": "84.65--86.05"
+  },
+  {
+    "role": "superiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "binary",
+    "score": "unadjusted",
+    "method": "refined_S_normal",
+    "source_indices": [
+      25,
+      29
+    ],
+    "rejections": [
+      8699,
+      8560
+    ],
+    "cell": "85.60--86.99"
+  },
+  {
+    "role": "superiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "binary",
+    "score": "unadjusted",
+    "method": "refined_R_normal",
+    "source_indices": [
+      25,
+      29
+    ],
+    "rejections": [
+      8693,
+      8556
+    ],
+    "cell": "85.56--86.93"
+  },
+  {
+    "role": "superiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "binary",
+    "score": "unadjusted",
+    "method": "refined_CRT_data",
+    "source_indices": [
+      25,
+      29
+    ],
+    "rejections": [
+      8606,
+      8466
+    ],
+    "cell": "84.66--86.06"
+  },
+  {
+    "role": "superiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "binary",
+    "score": "adjusted",
+    "method": "RT",
+    "source_indices": [
+      25,
+      29
+    ],
+    "rejections": [
+      8709,
+      8560
+    ],
+    "cell": "85.60--87.09"
+  },
+  {
+    "role": "superiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "binary",
+    "score": "adjusted",
+    "method": "refined_S_normal",
+    "source_indices": [
+      25,
+      29
+    ],
+    "rejections": [
+      8706,
+      8562
+    ],
+    "cell": "85.62--87.06"
+  },
+  {
+    "role": "superiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "binary",
+    "score": "adjusted",
+    "method": "refined_R_normal",
+    "source_indices": [
+      25,
+      29
+    ],
+    "rejections": [
+      8702,
+      8552
+    ],
+    "cell": "85.52--87.02"
+  },
+  {
+    "role": "superiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "binary",
+    "score": "adjusted",
+    "method": "refined_CRT_data",
+    "source_indices": [
+      25,
+      29
+    ],
+    "rejections": [
+      8718,
+      8571
+    ],
+    "cell": "85.71--87.18"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "continuous",
+    "score": "unadjusted",
+    "method": "RT",
+    "source_indices": [
+      3,
+      7
+    ],
+    "rejections": [
+      8193,
+      7900
+    ],
+    "cell": "79.00--81.93"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "continuous",
+    "score": "unadjusted",
+    "method": "refined_S_normal",
+    "source_indices": [
+      3,
+      7
+    ],
+    "rejections": [
+      8221,
+      7922
+    ],
+    "cell": "79.22--82.21"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "continuous",
+    "score": "unadjusted",
+    "method": "refined_R_normal",
+    "source_indices": [
+      3,
+      7
+    ],
+    "rejections": [
+      8187,
+      7895
+    ],
+    "cell": "78.95--81.87"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "continuous",
+    "score": "unadjusted",
+    "method": "refined_CRT_data",
+    "source_indices": [
+      3,
+      7
+    ],
+    "rejections": [
+      8228,
+      7927
+    ],
+    "cell": "79.27--82.28"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "continuous",
+    "score": "adjusted",
+    "method": "RT",
+    "source_indices": [
+      3,
+      7
+    ],
+    "rejections": [
+      8249,
+      7910
+    ],
+    "cell": "79.10--82.49"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "continuous",
+    "score": "adjusted",
+    "method": "refined_S_normal",
+    "source_indices": [
+      3,
+      7
+    ],
+    "rejections": [
+      8270,
+      7931
+    ],
+    "cell": "79.31--82.70"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "continuous",
+    "score": "adjusted",
+    "method": "refined_R_normal",
+    "source_indices": [
+      3,
+      7
+    ],
+    "rejections": [
+      8242,
+      7908
+    ],
+    "cell": "79.08--82.42"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "continuous",
+    "score": "adjusted",
+    "method": "refined_CRT_data",
+    "source_indices": [
+      3,
+      7
+    ],
+    "rejections": [
+      8275,
+      7935
+    ],
+    "cell": "79.35--82.75"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "binary",
+    "score": "unadjusted",
+    "method": "RT",
+    "source_indices": [
+      11,
+      15
+    ],
+    "rejections": [
+      8585,
+      8430
+    ],
+    "cell": "84.30--85.85"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "binary",
+    "score": "unadjusted",
+    "method": "refined_S_normal",
+    "source_indices": [
+      11,
+      15
+    ],
+    "rejections": [
+      8611,
+      8469
+    ],
+    "cell": "84.69--86.11"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "binary",
+    "score": "unadjusted",
+    "method": "refined_R_normal",
+    "source_indices": [
+      11,
+      15
+    ],
+    "rejections": [
+      8597,
+      8454
+    ],
+    "cell": "84.54--85.97"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "binary",
+    "score": "unadjusted",
+    "method": "refined_CRT_data",
+    "source_indices": [
+      11,
+      15
+    ],
+    "rejections": [
+      8595,
+      8438
+    ],
+    "cell": "84.38--85.95"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "binary",
+    "score": "adjusted",
+    "method": "RT",
+    "source_indices": [
+      11,
+      15
+    ],
+    "rejections": [
+      8590,
+      8449
+    ],
+    "cell": "84.49--85.90"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "binary",
+    "score": "adjusted",
+    "method": "refined_S_normal",
+    "source_indices": [
+      11,
+      15
+    ],
+    "rejections": [
+      8609,
+      8466
+    ],
+    "cell": "84.66--86.09"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "binary",
+    "score": "adjusted",
+    "method": "refined_R_normal",
+    "source_indices": [
+      11,
+      15
+    ],
+    "rejections": [
+      8593,
+      8453
+    ],
+    "cell": "84.53--85.93"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 2,
+    "n": 200,
+    "outcome": "binary",
+    "score": "adjusted",
+    "method": "refined_CRT_data",
+    "source_indices": [
+      11,
+      15
+    ],
+    "rejections": [
+      8603,
+      8464
+    ],
+    "cell": "84.64--86.03"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "continuous",
+    "score": "unadjusted",
+    "method": "RT",
+    "source_indices": [
+      19,
+      23
+    ],
+    "rejections": [
+      8010,
+      7916
+    ],
+    "cell": "79.16--80.10"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "continuous",
+    "score": "unadjusted",
+    "method": "refined_S_normal",
+    "source_indices": [
+      19,
+      23
+    ],
+    "rejections": [
+      8030,
+      7909
+    ],
+    "cell": "79.09--80.30"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "continuous",
+    "score": "unadjusted",
+    "method": "refined_R_normal",
+    "source_indices": [
+      19,
+      23
+    ],
+    "rejections": [
+      8023,
+      7906
+    ],
+    "cell": "79.06--80.23"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "continuous",
+    "score": "unadjusted",
+    "method": "refined_CRT_data",
+    "source_indices": [
+      19,
+      23
+    ],
+    "rejections": [
+      8022,
+      7928
+    ],
+    "cell": "79.28--80.22"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "continuous",
+    "score": "adjusted",
+    "method": "RT",
+    "source_indices": [
+      19,
+      23
+    ],
+    "rejections": [
+      8062,
+      7944
+    ],
+    "cell": "79.44--80.62"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "continuous",
+    "score": "adjusted",
+    "method": "refined_S_normal",
+    "source_indices": [
+      19,
+      23
+    ],
+    "rejections": [
+      8085,
+      7941
+    ],
+    "cell": "79.41--80.85"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "continuous",
+    "score": "adjusted",
+    "method": "refined_R_normal",
+    "source_indices": [
+      19,
+      23
+    ],
+    "rejections": [
+      8072,
+      7940
+    ],
+    "cell": "79.40--80.72"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "continuous",
+    "score": "adjusted",
+    "method": "refined_CRT_data",
+    "source_indices": [
+      19,
+      23
+    ],
+    "rejections": [
+      8071,
+      7941
+    ],
+    "cell": "79.41--80.71"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "binary",
+    "score": "unadjusted",
+    "method": "RT",
+    "source_indices": [
+      27,
+      31
+    ],
+    "rejections": [
+      8837,
+      8769
+    ],
+    "cell": "87.69--88.37"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "binary",
+    "score": "unadjusted",
+    "method": "refined_S_normal",
+    "source_indices": [
+      27,
+      31
+    ],
+    "rejections": [
+      8864,
+      8788
+    ],
+    "cell": "87.88--88.64"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "binary",
+    "score": "unadjusted",
+    "method": "refined_R_normal",
+    "source_indices": [
+      27,
+      31
+    ],
+    "rejections": [
+      8858,
+      8776
+    ],
+    "cell": "87.76--88.58"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "binary",
+    "score": "unadjusted",
+    "method": "refined_CRT_data",
+    "source_indices": [
+      27,
+      31
+    ],
+    "rejections": [
+      8842,
+      8773
+    ],
+    "cell": "87.73--88.42"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "binary",
+    "score": "adjusted",
+    "method": "RT",
+    "source_indices": [
+      27,
+      31
+    ],
+    "rejections": [
+      8849,
+      8775
+    ],
+    "cell": "87.75--88.49"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "binary",
+    "score": "adjusted",
+    "method": "refined_S_normal",
+    "source_indices": [
+      27,
+      31
+    ],
+    "rejections": [
+      8859,
+      8796
+    ],
+    "cell": "87.96--88.59"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "binary",
+    "score": "adjusted",
+    "method": "refined_R_normal",
+    "source_indices": [
+      27,
+      31
+    ],
+    "rejections": [
+      8850,
+      8792
+    ],
+    "cell": "87.92--88.50"
+  },
+  {
+    "role": "noninferiority_power",
+    "F": 5,
+    "n": 400,
+    "outcome": "binary",
+    "score": "adjusted",
+    "method": "refined_CRT_data",
+    "source_indices": [
+      27,
+      31
+    ],
+    "rejections": [
+      8850,
+      8782
+    ],
+    "cell": "87.82--88.50"
+  }
+]

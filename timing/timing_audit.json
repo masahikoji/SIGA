@@ -1,0 +1,77 @@
+{
+  "source_files": [
+    "calibration_times.csv",
+    "timing_by_scenario.csv"
+  ],
+  "run_checks": {
+    "main_d012_20261009": {
+      "trials": 1760000,
+      "reference_share_percent": 97.251427,
+      "construction_worker_seconds": 574.513313,
+      "reference_worker_seconds": 45779.277259,
+      "tail_worker_seconds": 719.325758,
+      "total_worker_seconds": 47073.11633
+    },
+    "additional_d012_20261009": {
+      "trials": 1280000,
+      "reference_share_percent": 98.542874,
+      "construction_worker_seconds": 409.121587,
+      "reference_worker_seconds": 70868.634768,
+      "tail_worker_seconds": 638.792851,
+      "total_worker_seconds": 71916.549206
+    }
+  },
+  "design_reference_milliseconds_per_trial": {
+    "F=2,n=200,pbc=0.80": {
+      "trials": 1080000,
+      "reference_milliseconds_mean": 15.683941,
+      "range_by_scenario_ms": [
+        13.52517,
+        16.362359
+      ]
+    },
+    "F=2,n=1000,pbc=0.80": {
+      "trials": 220000,
+      "reference_milliseconds_mean": 68.993424,
+      "range_by_scenario_ms": [
+        68.105015,
+        70.137306
+      ]
+    },
+    "F=5,n=400,pbc=0.80": {
+      "trials": 1080000,
+      "reference_milliseconds_mean": 34.805379,
+      "range_by_scenario_ms": [
+        29.853573,
+        36.019413
+      ]
+    },
+    "F=5,n=400,pbc=0.95": {
+      "trials": 440000,
+      "reference_milliseconds_mean": 30.915006,
+      "range_by_scenario_ms": [
+        30.808556,
+        31.025293
+      ]
+    },
+    "F=5,n=2000,pbc=0.80": {
+      "trials": 220000,
+      "reference_milliseconds_mean": 151.537682,
+      "range_by_scenario_ms": [
+        150.775098,
+        152.123925
+      ]
+    }
+  },
+  "calibration_seconds_range": [
+    0.995216,
+    11.519517
+  ],
+  "distinct_calibration_settings": 5,
+  "recorded_calibrations": 7,
+  "all_trials": 3040000,
+  "all_reference_sequences": 15196960000,
+  "reference_fraction_all_percent": 98.031969,
+  "worker_hours_all": 33.052685,
+  "worker_hours_reference": 32.402198
+}

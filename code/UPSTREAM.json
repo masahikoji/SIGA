@@ -1,0 +1,16 @@
+{
+  "repository": "https://github.com/masahikoji/SIGA",
+  "commit": "1685daefb13c8a86602526e8828c321076fd6993",
+  "source_directory": "validation/code",
+  "upstream_blob_sha1": {
+    "siga_validation/allocation.py": "6e831e4c667b3a2c9382b353249c2046cd7e90b9",
+    "siga_validation/core.py": "9179e832b6954a75c4da689636022e4563e9a5d3",
+    "siga_validation/design.py": "9acc953b13789928acf7811717bdb52d6ba956c8",
+    "siga_validation/experiment.py": "3c3a0cc37387770cd7990afd73ad3c5d664ceab0",
+    "siga_validation/report.py": "75cca5f43f5891d4bda48077ad44ef0047e44d89",
+    "siga_validation/tests.py": "15737b03b24d1ebbe37b2c18d034293710be62f8",
+    "LICENSE": "6d8d86381516b3658a3fbf04490f1ff169c4f232",
+    "requirements.txt": "d74365a67c57889c435f31ac66ce39948213841c"
+  },
+  "transport": "GitHub connector; reconstructed bytes checked against upstream Git blob SHA1"
+}

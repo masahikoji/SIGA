@@ -1,0 +1,20 @@
+{
+  "version": "d012-m3-20261009",
+  "base_package_sha256": "70d89951a16ee573e4542b914531238ddf774494dfd8c143d7e13548c53a7166",
+  "requested_binary_amplitude": 0.12,
+  "binary_policy": "error; no shrinking or clipping in the active runner",
+  "numerical_inference_files_unchanged": [
+    "siga_validation/allocation.py",
+    "siga_validation/core.py"
+  ],
+  "tested_environment": {
+    "python": "3.13.5",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "numba": "0.65.1",
+    "llvmlite": "0.47.0",
+    "os": "Linux x86_64"
+  },
+  "native_M3_tested": false,
+  "full_production_outcome_run_completed": false
+}

@@ -1,0 +1,56 @@
+{
+  "calibration_cost": "common full three-sequence bundle; conservatively also charged to SIGA-S",
+  "calibration_repetitions": 3,
+  "calibration_triples": 100000,
+  "code_path": "/Users/mk/Library/CloudStorage/Dropbox/Tex/03_Post_PhD/029_exact_minimization/02_program/SIGA_M3Ultra_d012_20261009",
+  "comparison_methods": [
+    "RT",
+    "original_S_normal",
+    "refined_S_normal",
+    "original_R_normal",
+    "refined_R_normal",
+    "original_CRT_data",
+    "refined_CRT_data"
+  ],
+  "created_utc": "2026-10-10T05:18:48.548529+00:00",
+  "excluded": [
+    "data generation",
+    "disk IO",
+    "compilation warm-up"
+  ],
+  "generating_trial_start": 2000000000,
+  "kind": "standalone_method_timing",
+  "logical_cpu_count": 28,
+  "minimum_seconds_per_block": 1.0,
+  "note": "Timing projections only. No operating-characteristic result is generated or replaced.",
+  "numerical_environment": {
+    "llvmlite": "0.47.0",
+    "machine": "arm64",
+    "numba": "0.65.1",
+    "numpy": "2.3.5",
+    "python": "3.13.16",
+    "scipy": "1.17.0",
+    "system": "Darwin"
+  },
+  "numerical_threads": 1,
+  "one_process": true,
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "processor": "arm",
+  "reference_draws": 4999,
+  "repetitions": 5,
+  "scenario_indices": [
+    0,
+    1,
+    8,
+    9,
+    16,
+    17,
+    24,
+    25
+  ],
+  "score_preparation": "timed separately and added for end-to-end projections",
+  "source_plan_hash": "7ccc50a38791757a6f9be2321d9cf6e9969f2afc27825be5a9fc27fc55f52b17",
+  "source_run": "/Users/mk/SIGA_runs/main_d012_20261009",
+  "source_signature": "8071a5daf9fe03d1dbf40c166a88b8edf5e4ff2d7e73df2fc05b8a06e442db7e",
+  "trials_per_timing_block": 100
+}

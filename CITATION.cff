@@ -1,16 +1,8 @@
 cff-version: 1.2.0
-message: "Please cite the version of this software that produced the results used."
-title: "SIGA: sampling and conditional randomisation inference"
-version: "1.1.0-dev"
-type: software
+message: "This is a submission snapshot. Cite the final archived release and its actual DOI when available."
+title: "Squared assignment correlations and randomisation tests of weak null hypotheses under covariate-adaptive allocation: computational material"
 authors:
-  - family-names: "Kojima"
-    given-names: "Masahiro"
+  - family-names: Kojima
+    given-names: Masahiro
+version: "2026-10-10-submission"
 repository-code: "https://github.com/masahikoji/SIGA"
-preferred-citation:
-  type: unpublished
-  title: "Squared assignment correlations and randomisation tests of weak null hypotheses under covariate-adaptive allocation"
-  authors:
-    - family-names: "Kojima"
-      given-names: "Masahiro"
-  year: 2026
