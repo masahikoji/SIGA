@@ -1,0 +1,49 @@
+Python dependencies: OK
+test_01_vendor_bytes_unchanged (test_focus.FocusedTests.test_01_vendor_bytes_unchanged) ... ok
+test_02_scope (test_focus.FocusedTests.test_02_scope) ... ok
+test_03_production_budget (test_focus.FocusedTests.test_03_production_budget) ... ok
+test_04_mean_zero_direction (test_focus.FocusedTests.test_04_mean_zero_direction) ... ok
+test_05_marginal_effects (test_focus.FocusedTests.test_05_marginal_effects) ... ok
+test_06_fixed_power_shift (test_focus.FocusedTests.test_06_fixed_power_shift) ... ok
+test_07_a13_zero_deviation (test_focus.FocusedTests.test_07_a13_zero_deviation) ... ok
+test_08_independent_rng_streams (test_focus.FocusedTests.test_08_independent_rng_streams) ... ok
+test_09_covariance_accumulator (test_focus.FocusedTests.test_09_covariance_accumulator) ... ok
+test_10_nested_reference_draws (test_focus.FocusedTests.test_10_nested_reference_draws) ... ok
+test_11_principal_pvalues_match_original (test_focus.FocusedTests.test_11_principal_pvalues_match_original) ... ok
+test_12_truth_is_diagnostic_only (test_focus.FocusedTests.test_12_truth_is_diagnostic_only) ... ok
+test_13_exact_correction_decomposition (test_focus.FocusedTests.test_13_exact_correction_decomposition) ... ok
+test_14_oracle_zero_CRT_equals_RT (test_focus.FocusedTests.test_14_oracle_zero_CRT_equals_RT) ... ok
+test_15_no_comparator_or_MC_CRT (test_focus.FocusedTests.test_15_no_comparator_or_MC_CRT) ... ok
+test_16_paired_error (test_focus.FocusedTests.test_16_paired_error) ... ok
+test_17_no_overwrite_and_plan_guard (test_focus.FocusedTests.test_17_no_overwrite_and_plan_guard) ... ok
+test_18_reconstruction_preserves_balance (test_focus.FocusedTests.test_18_reconstruction_preserves_balance) ... ok
+test_19_reference_tail_ties (test_focus.FocusedTests.test_19_reference_tail_ties) ... ok
+test_20_allocation_matches_absolute_range (test_focus.FocusedTests.test_20_allocation_matches_absolute_range) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.151s
+
+OK
+Output: /mnt/data/_focused_revision_work/final_smoke_2
+Profile: smoke ; scenarios: 5
+Calibration 1/7: {'key': 'F2_n1000_p95', 'stage': 'analysis', 'rep': 0, 'cached': True}
+Calibration 2/7: {'key': 'F2_n200_p95', 'stage': 'analysis', 'rep': 0, 'cached': True}
+Calibration 3/7: {'key': 'F2_n200_p95', 'stage': 'direction', 'rep': 0, 'cached': True}
+Calibration 4/7: {'key': 'F5_n400_p95', 'stage': 'analysis', 'rep': 0, 'cached': True}
+Calibration 5/7: {'key': 'F5_n400_p95', 'stage': 'analysis', 'rep': 1, 'cached': True}
+Calibration 6/7: {'key': 'F5_n400_p95', 'stage': 'analysis', 'rep': 2, 'cached': True}
+Calibration 7/7: {'key': 'F2_n1000_p95', 'stage': 'direction', 'rep': 0, 'cached': True}
+Running 36 requested trials in 10 chunks with 2 workers.
+Trials 18/36 (50.0%); chunks 5/10; cached=5; elapsed=0.0 min; last=G_C_n1000_null
+Trials 36/36 (100.0%); chunks 10/10; cached=10; elapsed=0.0 min; last=G_C_n200_null
+{
+  "profile": "smoke",
+  "plan_hash": "6e4b4d0b22a08d99112a543ca4c0b1c0d74a0576dc9869d31b7945ca6b2505b5",
+  "planned_trials": 36,
+  "completed_trials": 36,
+  "all_scenarios_complete": true,
+  "warning": "SMOKE TEST ONLY; not performance evidence."
+}
+/mnt/data/_focused_revision_work/final_smoke_2/results_for_review.zip
+Complete: /mnt/data/_focused_revision_work/final_smoke_2/report
+Upload: /mnt/data/_focused_revision_work/final_smoke_2/results_for_review.zip

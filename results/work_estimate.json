@@ -1,0 +1,11 @@
+{
+  "additional_reference_audit_trials": 2000,
+  "base_reference_paths": 1599680000,
+  "calibration_jobs": 7,
+  "calibration_triples": 900000,
+  "extra_reference_paths": 10000000,
+  "null_scenarios": 3,
+  "outcome_trials": 320000,
+  "scenarios": 5,
+  "statement": "Scores, methods and calibration sensitivity reuse the same outcomes. They do not multiply the independent trial count."
+}

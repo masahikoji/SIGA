@@ -1,0 +1,18 @@
+{
+  "repository": "masahikoji/SIGA",
+  "commit": "76daf34906b365dc787e1cbeeb4114c89e558b0d",
+  "files": {
+    "vendor/siga_validation/allocation.py": {
+      "git_blob_sha": "6e831e4c667b3a2c9382b353249c2046cd7e90b9",
+      "sha256": "37277125a881facf0d26070a1ab5de20d912b116ce26130151ca679d9be734b2",
+      "upstream_path": "code/siga_validation/allocation.py"
+    },
+    "vendor/siga_validation/core.py": {
+      "git_blob_sha": "9179e832b6954a75c4da689636022e4563e9a5d3",
+      "sha256": "efd82389a72a3a56a293dff21ed421729a1941413849483754454dcd9dee6f7a",
+      "upstream_path": "code/siga_validation/core.py"
+    }
+  },
+  "note": "Unmodified original allocation.py and core.py. This focused extension evaluates only the original four principal procedures, with separately labelled oracle and existing noise-subtraction diagnostics. It includes no external comparator or Monte Carlo-reference-variance CRT. The original repository is not modified.",
+  "donor_package": "User-supplied SIGA_JRSSB_revision_20261011(1).zip; narrowed in this package."
+}

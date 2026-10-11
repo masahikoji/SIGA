@@ -1,0 +1,6 @@
+﻿id,planned,completed,complete
+G_C_n200_null,100000,100000,True
+G_C_n200_power,10000,10000,True
+G_C_n1000_null,100000,100000,True
+G_C_n1000_power,10000,10000,True
+A13_diagnostic,100000,100000,True

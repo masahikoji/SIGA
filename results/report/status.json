@@ -1,0 +1,8 @@
+{
+  "all_scenarios_complete": true,
+  "completed_trials": 320000,
+  "plan_hash": "01f3ef317db86041ddce8e80a38f307ce352427f1e99463834e8cf3bf5b8d5cc",
+  "planned_trials": 320000,
+  "profile": "full",
+  "warning": "Pointwise conditional Monte Carlo uncertainty; inspect independent-calibration and high-reference audits separately."
+}

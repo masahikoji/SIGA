@@ -1,49 +1,48 @@
-# SIGA current analysis: computational reproducibility package (10 October 2026)
+# Completed follow-up validation (11 October 2026)
 
-This directory contains **code, fixed input plans, aggregate results and validation materials only** for the current evaluation of 32 primary plus 20 additional scenarios. It does **not** contain `main.tex`, `supplement.tex`, manuscript bibliography, PDF, or journal page-layout files. The manuscript is maintained separately for journal submission.
+This is an additive code-and-results snapshot for the follow-up in Supplement H.4 and Tables 15--17. It contains no manuscript TeX sources, bibliography, manuscript PDFs or font files. Table fragments are generated outputs, not manuscript sources.
 
-The current package is distinct from the historical `v1.0.0` release and older 280-scenario study. The previously published tag must remain unchanged. The current package is a dated snapshot, not yet an immutable release or a DOI deposit.
+## Completed design
 
-## Contents
+- Two-factor strong-heterogeneity models, n=200 and n=1000: 100,000 null trials and 10,000 alternative trials each (220,000 total).
+- Fresh A13 evaluation: 100,000 trials.
+- Principal reference budget: 4,999 per trial.
+- A13 calibration and nested 9,999-reference sensitivity: the same first 2,000 trials, not additional independent trials.
+- Total: 320,000 independent trials. All planned trials completed.
 
-- `code/`: Python/Numba simulation implementation, software requirements and code tests.
-- `plans/`: fixed scenario definitions, identifiers, seeds and numerical budgets.
-- `data/primary/`, `data/additional/`: aggregate outcomes, rejection counts and variance diagnostics (no participant data).
-- `timing/`: original method-specific benchmark repetitions, calibration records and computed summaries.
-- `audit/`: verifiers and table/plot recreation from archived aggregates, with frozen SHA-256 digests for the 11 archived table outputs.
-- `scripts/`: rerun-plan preparation, deterministic numerical checks and exact small-sample verification.
-- `review/`: additional pair-exporter utility used in the checks.
+## Contents and checks
 
-## Fast checks (no outcome resimulation)
+`program/SIGA_focused_validation_320k_20261011/` is the exact frozen execution source, with upstream allocation/inference files kept unchanged.
+`results/` contains the frozen plan, resolved directions, seven calibration arrays, CSVs and execution metadata.
+`results_for_review.zip` preserves the original uploaded archive byte for byte.
 
-From this directory, with the documented dependencies installed:
-
-```sh
-python scripts/verify_submission.py
-python audit/rebuild_power_summary.py --write
-python code/run.py test
-python audit/plot_primary_null.py
-```
-
-The checks regenerate derived table fragments under `audit/regenerated_tables/` and a figure under `figures/` as **outputs**, not included manuscript sources. They do not rerun the approximately 3.04 million original outcome trials. Do not interpret them as independent verification of every result.
-
-## Rerun the recorded simulations
-
-Install `code/requirements.txt` in a fresh environment (recorded runtime: Python 3.13.16 on macOS arm64, NumPy 2.3.5, SciPy 1.17.0, Numba 0.65.1, llvmlite 0.47.0). Then, for example:
+From this folder, in the recorded SIGA environment:
 
 ```sh
-python scripts/prepare_saved_plan.py --study primary --out "$HOME/SIGA_runs/reproduction_primary"
-python code/run.py calibrate --out "$HOME/SIGA_runs/reproduction_primary" --workers 2
-python code/run.py run --out "$HOME/SIGA_runs/reproduction_primary" --workers 8
-python code/run.py aggregate --out "$HOME/SIGA_runs/reproduction_primary"
+python verify_followup_results.py
+python rebuild_followup_tables.py
+python program/SIGA_focused_validation_320k_20261011/run_focus.py test
 ```
 
-Use `--study additional` and a separate empty output directory for the other 20 scenarios. The saved plan is checked against its frozen hash and source signature. On another numerical environment use the explicit override documented by `prepare_saved_plan.py`; cross-platform bitwise identity is not guaranteed. Full trial-level checkpoints and calibration arrays are not distributed and must be regenerated.
+The first command verifies supplied aggregates/calibrations, not missing trial checkpoints. The second recreates the three paper table fragments. Neither reruns the simulations.
 
-## Benchmarks and scope
+## Important report-text correction
 
-The timing results are projections from measured single-thread benchmark repetitions, not direct runs of 100,000 repeated analyses. Preprocessing and reuse costs are documented in `timing/`. Gaussian approximations avoid per-trial reference regeneration; CRT does not. The associated clinical illustration and historical studies in the root SIGA repository are separate from the current 52-scenario evaluation.
+The original `results/report/README.md` contains the obsolete sentence that A13 "is not a high-precision size study". The sealed plan and completion.csv establish 100,000 A13 trials. Only its paired sensitivity subset contains 2,000 trials. The frozen source and raw archive are retained unchanged for provenance; this note corrects the report wording, not the statistical calculations.
 
-## Archive and DOI
+## Reproduce the full simulation
 
-After reviewing this package, publish a new, immutable GitHub release without changing `v1.0.0`, and archive it with Zenodo or another DOI-issuing archive. Insert the actual new release URL and DOI in the journal manuscript before acceptance. No new release or DOI is created by this ZIP.
+Use the dependencies recorded in results/plan.json and in the frozen program. Start a fresh output directory; do not overwrite the recorded results. For example, on the original Mac environment:
+
+```sh
+cd program/SIGA_focused_validation_320k_20261011
+SIGA_FOCUS_OUT="$HOME/SIGA_runs/followup_reproduction_20261011" bash m3_focus.sh full
+```
+
+The original program checks its environment and hashes. Across machines numerical bitwise identity is not guaranteed. Trial-level checkpoints and reference draws are not distributed; rerunning reconstructs them. No new simulation is needed to use the completed results.
+
+## Interpretation
+
+The gap models deliberately examine a sizeable variance difference. Their alternatives use h=1.5, not an 80% power target. Principal procedures estimate effects from observations; true effects enter only explicit diagnostics. The A13 follow-up is a fresh sample and does not replace the original A13. Calibration sensitivity on 2,000 shared trials is not an unconditional precision guarantee.
+
+Upload this entire `followup_20261011` folder into the existing SIGA repository without altering historical tags. Add a link to it in the repository README. No release or DOI is created by this package. The root historical reproducibility-status document should be labelled as an earlier study rather than the current follow-up status.

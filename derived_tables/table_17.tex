@@ -1,0 +1,31 @@
+\begin{table}[!htbp]
+\centering
+\caption{A13 follow-up variance and effect-estimation diagnostics.}
+\label{tab:supp-focused-A13}
+\begin{threeparttable}
+\begin{singlespace}
+\small
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Quantity & Unadjusted & Adjusted\\
+\midrule
+$\overline{\widehat V_{\rm S}}/\widehat{\Var}(T_n)$ & 0.9995 & 1.0019 \\
+$\overline{V^*}/\widehat{\Var}(T_n)$ & 1.0004 & 1.0027 \\
+$\overline{\widehat V_{\rm R}^{\rm raw}}/\overline{\widehat V_{\rm S}}$ & 1.0062 & 1.0065 \\
+Median $\widehat\lambda$ & 1.0024 & 1.0025 \\
+95th percentile of $\widehat\lambda$ & 1.0119 & 1.0124 \\
+CRT using true $\bm d=0$ (\%) & 4.969 & 4.937 \\
+Exploratory noise-subtracted CRT (\%) & 5.069 & 5.074 \\
+Quadratic noise / mean $\widehat V_{\rm S}$ (\%) & 0.624 & 0.652 \\
+Estimated subtraction / mean $\widehat V_{\rm S}$ (\%) & 0.473 & 0.494 \\
+Singleton expected noise / mean $\widehat V_{\rm S}$ (\%) & 0.147 & 0.154 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]\footnotesize
+\item[] All entries use 100,000 trials and reconstructed covariance. $V^*$ is the sample variance of the regenerated reference statistics. The true-effect and noise-subtracted procedures are diagnostics, not replacements for the principal CRT. The variance ratios are ratios of means; the quantiles describe the trial-specific scale factor.
+\end{tablenotes}
+\end{singlespace}
+\end{threeparttable}
+\end{table}

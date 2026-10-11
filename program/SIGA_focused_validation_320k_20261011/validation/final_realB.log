@@ -1,0 +1,30 @@
+{
+  "scenarios": 5,
+  "null_scenarios": 3,
+  "outcome_trials": 15,
+  "additional_reference_audit_trials": 3,
+  "base_reference_paths": 74985,
+  "extra_reference_paths": 15000,
+  "calibration_jobs": 7,
+  "calibration_triples": 9000,
+  "statement": "Scores, methods and calibration sensitivity reuse the same outcomes. They do not multiply the independent trial count."
+}
+Frozen plan: /mnt/data/_focused_revision_work/final_realB/plan.json
+Calibration 1/7: {'key': 'F2_n1000_p95', 'stage': 'analysis', 'rep': 0, 'cached': False, 'seconds': 0.1641218710000203}
+Calibration 2/7: {'key': 'F2_n200_p95', 'stage': 'analysis', 'rep': 0, 'cached': False, 'seconds': 0.011323938000032285}
+Calibration 3/7: {'key': 'F2_n200_p95', 'stage': 'direction', 'rep': 0, 'cached': False, 'seconds': 0.02166269300005297}
+Calibration 4/7: {'key': 'F5_n400_p95', 'stage': 'analysis', 'rep': 0, 'cached': False, 'seconds': 0.03227851400004056}
+Calibration 5/7: {'key': 'F5_n400_p95', 'stage': 'analysis', 'rep': 1, 'cached': False, 'seconds': 0.032249321000108466}
+Calibration 6/7: {'key': 'F5_n400_p95', 'stage': 'analysis', 'rep': 2, 'cached': False, 'seconds': 0.031420733000004475}
+Calibration 7/7: {'key': 'F2_n1000_p95', 'stage': 'direction', 'rep': 0, 'cached': False, 'seconds': 0.21580147100007707}
+Running 15 requested trials in 10 chunks with 2 workers.
+Trials 7/15 (46.7%); chunks 5/10; cached=0; elapsed=0.0 min; last=G_C_n1000_null
+Trials 15/15 (100.0%); chunks 10/10; cached=0; elapsed=0.0 min; last=A13_diagnostic
+{
+  "profile": "smoke",
+  "plan_hash": "d4c2cfab81bc55497a424be18b77a22bc3a96379c7b048f874b08c2beae7c5e8",
+  "planned_trials": 15,
+  "completed_trials": 15,
+  "all_scenarios_complete": true,
+  "warning": "SMOKE TEST ONLY; not performance evidence."
+}

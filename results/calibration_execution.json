@@ -1,0 +1,51 @@
+[
+  {
+    "cached": false,
+    "key": "F2_n200_p95",
+    "rep": 0,
+    "seconds": 1.1247300830145832,
+    "stage": "analysis"
+  },
+  {
+    "cached": false,
+    "key": "F2_n200_p95",
+    "rep": 0,
+    "seconds": 2.2048707920184825,
+    "stage": "direction"
+  },
+  {
+    "cached": false,
+    "key": "F5_n400_p95",
+    "rep": 2,
+    "seconds": 2.6637284999887925,
+    "stage": "analysis"
+  },
+  {
+    "cached": false,
+    "key": "F5_n400_p95",
+    "rep": 0,
+    "seconds": 2.707402958010789,
+    "stage": "analysis"
+  },
+  {
+    "cached": false,
+    "key": "F5_n400_p95",
+    "rep": 1,
+    "seconds": 2.705299708992243,
+    "stage": "analysis"
+  },
+  {
+    "cached": false,
+    "key": "F2_n1000_p95",
+    "rep": 0,
+    "seconds": 5.013384249992669,
+    "stage": "analysis"
+  },
+  {
+    "cached": false,
+    "key": "F2_n1000_p95",
+    "rep": 0,
+    "seconds": 9.637790332984878,
+    "stage": "direction"
+  }
+]

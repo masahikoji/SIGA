@@ -1,0 +1,6 @@
+﻿id,family,F,n,pbc,outcome,model,boundary,delta,direction,amplitude,sigma,eta,tail,alpha,null_evaluation,historical_counterpart,audit,calibration_key,outer
+G_C_n200_null,gap,2,200,0.95,continuous,symmetric,-0.2,-0.2,maximum_ratio,1.0,0.05,0.0,upper,0.025,True,S09,False,F2_n200_p95,100000
+G_C_n200_power,gap,2,200,0.95,continuous,symmetric,-0.2,-0.09393398282201788,maximum_ratio,1.0,0.05,0.0,upper,0.025,False,,False,F2_n200_p95,10000
+G_C_n1000_null,gap,2,1000,0.95,continuous,symmetric,-0.2,-0.2,maximum_ratio,1.0,0.05,0.0,upper,0.025,True,S11,False,F2_n1000_p95,100000
+G_C_n1000_power,gap,2,1000,0.95,continuous,symmetric,-0.2,-0.15256583509747432,maximum_ratio,1.0,0.05,0.0,upper,0.025,False,,False,F2_n1000_p95,10000
+A13_diagnostic,diagnostic,5,400,0.95,continuous,prognostic,0.0,0.0,zero,0.0,0.25,0.25,two,0.05,True,A13,True,F5_n400_p95,100000
